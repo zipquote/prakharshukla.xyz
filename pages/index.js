@@ -1,12 +1,5 @@
-import Head from 'next/head'
-
-export default function Home() {
+export default function Index() {
   return (
-    <div>
-      <Head>
-        <title>Prakhar Shukla's website.</title>
-      </Head>
-      <div>Empty Slate</div>
-    </div>
+    <h1>Home Page</h1>
   )
 }
