@@ -4,7 +4,6 @@ import { CustomLink } from '../';
 
 const MDXComponents = {
   a: CustomLink,
-  TestComponent: dynamic(() => import('../TestComponent')),
   Head,
   code: dynamic(() => import('../CodeBlock')),
 };
