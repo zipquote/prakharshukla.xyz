@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
-import { CustomLink } from '../';
+import { NavLink } from '../';
 
 const MDXComponents = {
-  a: CustomLink,
+  a: NavLink,
   Head,
   code: dynamic(() => import('../CodeBlock')),
 };
