@@ -1,6 +1,6 @@
-import Link from 'next/link'
-import Layout from '../../src/components/Layout'
-import { API } from '../../src/utils'
+import Link from 'next/link';
+import Layout from '../../src/components/Layout';
+import { API } from '../../src/utils';
 
 export default function Index({ posts }) {
   return (
@@ -23,11 +23,11 @@ export default function Index({ posts }) {
         ))}
       </ul>
     </Layout>
-  )
+  );
 }
 
 export function getStaticProps() {
   const posts = API.getPostsData();
 
-  return { props: { posts } }
+  return { props: { posts } };
 }
