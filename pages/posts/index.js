@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Layout from '../../src/components/Layout';
+import { Layout } from '../../src/components';
 import { API } from '../../src/utils';
 
 export default function Index({ posts }) {

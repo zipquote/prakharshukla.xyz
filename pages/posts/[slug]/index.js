@@ -1,8 +1,7 @@
 import hydrate from 'next-mdx-remote/hydrate';
 import Link from 'next/link';
-import Layout from '../../../src/components/Layout';
+import { Layout, MDXComponents } from '../../../src/components';
 import { API } from '../../../src/utils';
-import MDXComponents from '../../../src/components/MDXComponents';
 
 export default function PostPage({ source, frontMatter }) {
   const content = hydrate(source, { components: MDXComponents });

@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import renderToString from 'next-mdx-remote/render-to-string';
-import MDXComponents from '../../../src/components/MDXComponents';
+import { MDXComponents } from '../../../src/components';
 
 const ROOT_PATH = process.cwd();
 const POSTS_PATH = path.join(ROOT_PATH, '/content/posts');
