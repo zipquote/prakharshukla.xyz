@@ -280,6 +280,17 @@ body {
 .main {
   flex: 1 0 100%;
 }
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  flex: 1 0 100%;
+}
+
 /*------------------- **************** ---------------------*/
 
 .shadow-btn {
@@ -290,4 +301,10 @@ body {
 .shadow-btn:focus {
   box-shadow: 0 3px 0 0 rgba(0, 0, 0, var(--tw-border-opacity));
   top: 3px;
+}
+
+/*------------------- **************** ---------------------*/
+
+.backdrop-blur {
+  backdrop-filter: blur(8px);
 }
