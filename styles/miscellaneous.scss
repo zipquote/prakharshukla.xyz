@@ -1,0 +1,22 @@
+html,
+body {
+  height: 100%;
+}
+
+#__next {
+  height: 100%;
+}
+
+.site-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.main {
+  flex: 1 0 100%;
+}
+
+.backdrop-blur {
+  backdrop-filter: blur(8px);
+}
