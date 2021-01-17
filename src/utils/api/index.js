@@ -18,8 +18,10 @@ function getPostsData() {
 
     return {
       content,
-      frontMatter: data,
-      filePath,
+      frontMatter: {
+        ...data,
+        slug: filePath.replace(/\.mdx?$/, ''),
+      },
     };
   });
 }
