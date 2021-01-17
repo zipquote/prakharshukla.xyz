@@ -1,12 +1,5 @@
 import Head from 'next/head';
-import {
-  NavLink,
-  PostListSection,
-  Image,
-  Card,
-  PostDate,
-  PostExcerpt,
-} from '../../src/components';
+import { NavLink, PostListSection, BlogPostList } from '../../src/components';
 import { API } from '../../src/utils';
 
 export default function Index({ posts }) {
@@ -27,22 +20,7 @@ export default function Index({ posts }) {
                 className="w-full sm:w-1/2 lg:w-1/3 mb-5"
               >
                 <NavLink as={`/posts/${frontMatter.slug}`} href="/posts/[slug]">
-                  <Card className="h-full">
-                    <Card.Header>
-                      <div className="card-image">
-                        <Image
-                          src={`${frontMatter.coverImage}`}
-                          alt={frontMatter.title}
-                          type="rounded"
-                        />
-                      </div>
-                    </Card.Header>
-                    <Card.Body>
-                      <Card.Title>{frontMatter.title}</Card.Title>
-                      <PostDate postDate={frontMatter.date} />
-                      <PostExcerpt excerpt={frontMatter.excerpt} />
-                    </Card.Body>
-                  </Card>
+                  <BlogPostList frontMatter={frontMatter} />
                 </NavLink>
               </li>
             );
