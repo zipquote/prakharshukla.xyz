@@ -7,33 +7,12 @@ export default function PostPage({ source, frontMatter }) {
   const content = hydrate(source, { components: MDXComponents });
   return (
     <Layout>
-      <header>
-        <nav>
-          <Link href="/">
-            <a>👈 Go back home</a>
-          </Link>
-        </nav>
-      </header>
-      <div className="post-header">
-        <h1>{frontMatter.title}</h1>
-        {frontMatter.description && (
-          <p className="description">{frontMatter.description}</p>
-        )}
-      </div>
-      <main>{content}</main>
-
-      <style jsx>{`
-        .post-header h1 {
-          margin-bottom: 0;
-        }
-
-        .post-header {
-          margin-bottom: 2rem;
-        }
-        .description {
-          opacity: 0.6;
-        }
-      `}</style>
+      <article className="px-2 md:p-0 w-full mb-20">
+        <h1 className="font-butler-extra-bold text-xl md:text-6xl mt-10 dark:text-white">
+          {frontMatter.title}
+        </h1>
+        <div className="mt-10 blog">{content}</div>
+      </article>
     </Layout>
   );
 }

@@ -1,28 +1,38 @@
+import classNames from 'classnames';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
+import nightOwl from 'prism-react-renderer/themes/nightOwl';
+import { DarkModeContext } from '../../context';
 
 export default function CodeBlock({ children, className }) {
   const language = className.replace(/language-/, '');
-  const { theme, ...highlightProps } = defaultProps;
 
   return (
-    <Highlight
-      {...highlightProps}
-      theme={nightOwlLight}
-      code={children}
-      language={language}
-    >
-      {({ className, style, tokens, getLineProps, getTokenProps }) => (
-        <pre className={className} style={{ ...style, padding: '20px' }}>
-          {tokens.map((line, i) => (
-            <div key={i} {...getLineProps({ line, key: i })}>
-              {line.map((token, key) => (
-                <span key={key} {...getTokenProps({ token, key })} />
+    <DarkModeContext.Consumer>
+      {({ isDarkMode }) => (
+        <Highlight
+          {...{ ...defaultProps, theme: isDarkMode ? nightOwl : nightOwlLight }}
+          code={children}
+          language={language}
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre
+              className={classNames(className, {
+                codeblock: true,
+              })}
+              style={style}
+            >
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
               ))}
-            </div>
-          ))}
-        </pre>
+            </pre>
+          )}
+        </Highlight>
       )}
-    </Highlight>
+    </DarkModeContext.Consumer>
   );
 }
