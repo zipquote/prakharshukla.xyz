@@ -1,3 +1,5 @@
+const path = require('path');
+
 // eslint-disable-next-line no-undef
 module.exports = {
   webpack: (config) => {
@@ -11,7 +13,9 @@ module.exports = {
     return config;
   },
   sass: true,
-  modules: true,
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'styles')],
+  },
   i18n: {
     locales: ['en-us', 'hi-in'],
     defaultLocale: 'en-us',

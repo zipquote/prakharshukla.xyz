@@ -1,4 +1,4 @@
-import '../styles/globals.css';
+import '../styles/main.scss';
 import classNames from 'classnames';
 import { Header, Footer } from '../src/components';
 import { DarkModeProvider, DarkModeContext } from '../src/context';
