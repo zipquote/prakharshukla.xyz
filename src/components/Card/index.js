@@ -8,7 +8,7 @@ export default function Card({ children, className, ...otherProps }) {
   return (
     <div
       className={classNames(
-        'hover:shadow-lg rounded-md overflow-hidden flex flex-col p-4',
+        'card rounded-md overflow-hidden flex flex-col p-4',
         className
       )}
       {...otherProps}

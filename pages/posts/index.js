@@ -16,7 +16,7 @@ export default function Index({ posts }) {
         <title>All Posts</title>
       </Head>
       <PostListSection>
-        <h1 className="mb-4 text-2xl leading-8 font-extrabold sm:text-3xl md:text-5xl">
+        <h1 className="mb-4 text-2xl leading-8 font-extrabold sm:text-3xl md:text-5xl text-black dark:text-white">
           Blog Posts
         </h1>
         <ul className="my-10 flex flex-wrap sm:-mx-4">

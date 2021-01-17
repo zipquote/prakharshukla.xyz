@@ -7,7 +7,7 @@ import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
-    <header className="fixed w-full bg-white bg-opacity-50 backdrop-blur">
+    <header className="fixed w-full bg-white dark:bg-transparent bg-opacity-50 backdrop-blur">
       <div className="p-2 flex justify-between">
         <Brand />
         <div className="mx-4 hidden sm:block sm:ml-auto">
