@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames';
-import { Brand } from '../../components';
+import { Brand, Button } from '../../components';
 import HeaderMenu from './HeaderMenu';
 import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
 
@@ -13,12 +13,12 @@ export default function Header() {
         <div className="mx-4 hidden sm:block sm:ml-auto">
           <HeaderMenu />
         </div>
-        <button
-          className="px-2 py-1 sm:p-0 flex items-center justify-center bg-white border-0 sm:hidden"
+        <Button
+          className="px-2 py-1 flex items-center justify-center sm:hidden"
           onClick={() => setMenuOpen((curr) => !curr)}
         >
           <HamburgerIcon />
-        </button>
+        </Button>
       </div>
       <div
         className={classNames('overflow-hidden', {

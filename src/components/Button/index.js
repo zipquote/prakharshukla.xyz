@@ -1,6 +1,14 @@
-export default function Button({ children }) {
+import classNames from 'classnames';
+
+export default function Button({ children, className, ...otherProps }) {
   return (
-    <button className="py-1 px-3 mx-1 mb-1 border-2 border-black rounded shadow-btn relative">
+    <button
+      className={classNames(
+        'p-1 mx-1 mb-1 border-2 border-black rounded shadow-btn relative',
+        className
+      )}
+      {...otherProps}
+    >
       {children}
     </button>
   );
