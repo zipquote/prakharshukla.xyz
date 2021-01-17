@@ -1,16 +1,13 @@
 import classNames from 'classnames';
 
-export default function PostListSection({
+export default function FullWidthLayout({
   children,
   className,
   ...otherProps
 }) {
   return (
     <section
-      className={classNames(
-        'max-w-3xl xl:max-w-5xl mx-auto px-2 xl:px-0',
-        className
-      )}
+      className={classNames('max-w-full xl:max-w-5xl mx-auto', className)}
       {...otherProps}
     >
       {children}

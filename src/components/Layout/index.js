@@ -1,3 +1,5 @@
+import FullWidthLayout from './FullWidthLayout';
+
 export default function Layout({ children }) {
   return (
     <>
@@ -41,3 +43,5 @@ export default function Layout({ children }) {
     </>
   );
 }
+
+Layout.FullWidth = FullWidthLayout;
