@@ -11,3 +11,4 @@ export { default as PostExcerpt } from './Post/PostExcerpt';
 export { default as PostListSection } from './Post/PostListSection';
 export { default as MDXComponents } from './MDXComponents';
 export { default as CodeBlock } from './CodeBlock';
+export { default as ColorModeToggle } from './ColorModeToggle';
