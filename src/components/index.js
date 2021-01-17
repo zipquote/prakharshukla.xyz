@@ -12,3 +12,5 @@ export { default as PostListSection } from './Post/PostListSection';
 export { default as MDXComponents } from './MDXComponents';
 export { default as CodeBlock } from './CodeBlock';
 export { default as ColorModeToggle } from './ColorModeToggle';
+
+export { default as BlogPostList } from './BlogPostList';
