@@ -303,22 +303,22 @@ body {
   top: 3px;
 }
 
-html.dark .shadow-btn {
+.dark .shadow-btn {
   box-shadow: 0 6px 0 0 rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
-html.dark .shadow-btn svg {
+.dark .shadow-btn svg {
   fill: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
-html.dark .shadow-btn:hover,
-html.dark .shadow-btn:focus {
+.dark .shadow-btn:hover,
+.dark .shadow-btn:focus {
   box-shadow: 0 3px 0 0 rgba(255, 255, 255, var(--tw-bg-opacity));
   top: 3px;
 }
 
-html.dark .shadow-btn:hover svg,
-html.dark .shadow-btn:focus svg {
+.dark .shadow-btn:hover svg,
+.dark .shadow-btn:focus svg {
   fill: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
 
