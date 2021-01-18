@@ -4,13 +4,13 @@ export default function BlogPostList({ frontMatter }) {
   return (
     <Card className="h-full">
       <Card.Header>
-        <div className="card-image">
-          <Image
-            src={`${frontMatter.coverImage}`}
-            alt={frontMatter.title}
-            type="rounded"
-          />
-        </div>
+        <Image
+          src={`${frontMatter.coverImage}`}
+          alt={frontMatter.title}
+          type="rounded"
+          layout="fill"
+          className="card-image"
+        />
       </Card.Header>
       <Card.Body>
         <Card.Title>{frontMatter.title}</Card.Title>

@@ -1,22 +1,24 @@
+import Image from 'next/image';
 import classNames from 'classnames';
 
-export default function Image({ src, alt, type }) {
+export default function CustomImage({ type, className, ...otherProps }) {
   return (
-    <img
-      src={src}
-      alt={alt}
+    <div
       className={classNames(
         'shadow max-w-full h-auto align-middle border-none',
+        className,
         {
           'rounded sm:rounded-md md:rounded-xl': type === 'rounded',
           'rounded-full': type === 'circle',
           'rounded-none': type === 'default',
         }
       )}
-    />
+    >
+      <Image {...otherProps} />
+    </div>
   );
 }
 
-Image.defaultProps = {
+CustomImage.defaultProps = {
   type: 'default',
 };

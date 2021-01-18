@@ -20,4 +20,7 @@ module.exports = {
     locales: ['en-us', 'hi-in'],
     defaultLocale: 'en-us',
   },
+  images: {
+    domains: ['res.cloudinary.com'],
+  },
 };
