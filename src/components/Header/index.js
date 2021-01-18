@@ -7,7 +7,7 @@ import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
-    <header className="fixed w-full bg-white dark:bg-transparent bg-opacity-50 backdrop-blur">
+    <header className="fixed w-full bg-white dark:bg-transparent bg-opacity-50 backdrop-blur z-10">
       <Layout.FullWidth>
         <div className="flex justify-between p-2">
           <Brand />
