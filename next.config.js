@@ -17,8 +17,8 @@ module.exports = {
     includePaths: [path.join(__dirname, 'styles')],
   },
   i18n: {
-    locales: ['en-us', 'hi-in'],
-    defaultLocale: 'en-us',
+    locales: ['en', 'hi'],
+    defaultLocale: 'en',
   },
   images: {
     domains: ['res.cloudinary.com'],
