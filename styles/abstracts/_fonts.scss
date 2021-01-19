@@ -34,41 +34,10 @@
 }
 
 @font-face {
-  font-family: 'Jetbrains Light';
-  font-display: swap;
-  src: url('../../public/fonts/jetbrains/JetBrains_Light.otf');
-  src: url('../../public/fonts/Jetbrains/JetBrains_Light.otf')
-    format('opentype');
-}
-
-@font-face {
   font-family: 'Jetbrains';
   font-display: swap;
   src: url('../../public/fonts/jetbrains/JetBrains_Regular.otf');
   src: url('../../public/fonts/jetbrains/JetBrains_Regular.otf')
-    format('opentype');
-}
-
-@font-face {
-  font-family: 'Jetbrains Medium';
-  font-display: swap;
-  src: url('../../public/fonts/jetbrains/JetBrains_Medium.otf');
-  src: url('../../public/fonts/jetbrains/JetBrains_Medium.otf')
-    format('opentype');
-}
-
-@font-face {
-  font-family: 'Jetbrains Bold';
-  font-display: swap;
-  src: url('../../public/fonts/jetbrains/JetBrains_Bold.otf');
-  src: url('../../public/fonts/jetbrains/JetBrains_Bold.otf') format('opentype');
-}
-
-@font-face {
-  font-family: 'Jetbrains Extra Bold';
-  font-display: swap;
-  src: url('../../public/fonts/jetbrains/JetBrains_ExtraBold.otf');
-  src: url('../../public/fonts/jetbrains/JetBrains_ExtraBold.otf')
     format('opentype');
 }
 
