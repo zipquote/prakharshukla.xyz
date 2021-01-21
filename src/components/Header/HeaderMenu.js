@@ -5,7 +5,7 @@ export default function HeaderMenu() {
       <NavLink className="hover:underline px-4 py-2 mr-2" href="/posts">
         Blog
       </NavLink>
-      <NavLink className="hover:underline px-4 py-2 mr-2" href="/posts">
+      <NavLink className="hover:underline px-4 py-2 mr-2" href="/work">
         Work
       </NavLink>
     </div>

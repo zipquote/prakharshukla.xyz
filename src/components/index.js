@@ -11,5 +11,5 @@ export { default as PostExcerpt } from './Post/PostExcerpt';
 export { default as MDXComponents } from './MDXComponents';
 export { default as CodeBlock } from './CodeBlock';
 export { default as ColorModeToggle } from './ColorModeToggle';
-
+export { default as Canvas } from './Canvas';
 export { default as BlogPostList } from './BlogPostList';
