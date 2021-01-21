@@ -1,4 +1,5 @@
 import Button from '../Button';
+import classNames from 'classnames';
 import WeatherSunIcon from '../../assets/icons/weather/sun.svg';
 import WeatherMoonIcon from '../../assets/icons/weather/moon.svg';
 import { useDarkMode } from '../../hooks';
@@ -15,23 +16,12 @@ export default function ColorModeToggle() {
   const [isDarkMode, toggleDarkMode] = useDarkMode();
 
   return (
-    <Button
-      className="overflow-hidden relative"
-      onClick={() => toggleDarkMode()}
-      style={{
-        padding: 0,
-        width: BUTTON_SIDE_LENGTH,
-        height: BUTTON_SIDE_LENGTH,
-      }}
-    >
+    <Button className="colormode" onClick={() => toggleDarkMode()}>
       <div
-        className="flex align-center justify-between"
-        style={{
-          position: 'absolute',
-          top: 4,
-          left: isDarkMode ? DARK_MODE_LEFT : '0',
-          transition: 'left 250ms linear',
-        }}
+        className={classNames({
+          colormode__icons: !isDarkMode,
+          'colormode__icons--dark': isDarkMode,
+        })}
       >
         <WeatherMoonIcon style={ICON_STYLE} />
         <WeatherSunIcon style={ICON_STYLE} />

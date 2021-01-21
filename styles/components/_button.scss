@@ -6,10 +6,8 @@
     box-shadow: 0 3px 0 0 rgba(0, 0, 0, var(--tw-border-opacity));
     top: 3px;
   }
-}
 
-.dark {
-  & .shadow-btn {
+  .dark & {
     box-shadow: 0 6px 0 0 rgba(255, 255, 255, var(--tw-bg-opacity));
 
     &:hover,
@@ -20,6 +18,34 @@
 
     & svg {
       fill: rgba(255, 255, 255, var(--tw-bg-opacity));
+    }
+  }
+}
+
+.colormode {
+  $button_side: 36px;
+  $icon_dimension: 24px;
+  $icon_margin: 4px;
+
+  @apply overflow-hidden relative p-0;
+  width: $button_side;
+  height: $button_side;
+
+  & > div {
+    @apply flex items-center justify-between absolute;
+    top: ($button_side - ($icon_dimension + 4))/2; //4px is top + bottom border width
+    transition: left 250ms linear;
+  }
+
+  &__icons {
+    left: 0;
+
+    &--dark {
+      left: -1 * ($button_side - $icon_margin);
+    }
+
+    svg {
+      margin: 0 $icon_margin;
     }
   }
 }
