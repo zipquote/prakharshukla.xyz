@@ -31,7 +31,8 @@
   width: $button_side;
   height: $button_side;
 
-  & > div {
+  &__icons,
+  &__icons--dark {
     @apply flex items-center justify-between absolute;
     top: ($button_side - ($icon_dimension + 4))/2; //4px is top + bottom border width
     transition: left 250ms linear;
@@ -43,9 +44,9 @@
     &--dark {
       left: -1 * ($button_side - $icon_margin);
     }
+  }
 
-    svg {
-      margin: 0 $icon_margin;
-    }
+  svg {
+    margin: 0 $icon_margin;
   }
 }
