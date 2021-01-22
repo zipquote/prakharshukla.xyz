@@ -12,13 +12,20 @@ module.exports = {
 
     return config;
   },
-  sass: true,
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+  serverRuntimeConfig: {
+    sass: true,
+    sassOptions: {
+      includePaths: [path.join(__dirname, 'styles')],
+    },
   },
-  i18n: {
-    locales: ['en', 'hi'],
-    defaultLocale: 'en',
+  publicRuntimeConfig: {
+    i18n: {
+      locales: ['en', 'hi'],
+      defaultLocale: 'en',
+    },
+    images: {
+      domains: ['res.cloudinary.com'],
+    },
   },
   images: {
     domains: ['res.cloudinary.com'],
