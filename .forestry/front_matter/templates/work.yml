@@ -1,4 +1,84 @@
 ---
 label: Work
 hide_body: false
-fields: []
+fields:
+- name: project_name
+  type: text
+  config:
+    required: true
+    min: 2
+  label: Project Name
+  description: Name/Title of the project.
+- name: site_link
+  type: text
+  config:
+    required: false
+  label: Site Link
+  description: Link of the site or project if available.
+- name: project_description
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: false
+    schema:
+      format: markdown
+    min: 25
+  label: Project Description
+  description: Describe the project in short.
+- name: project_timeframe
+  type: field_group
+  config: {}
+  fields:
+  - name: project_start_date
+    type: datetime
+    label: Project Start Date
+    description: Start date of the project.
+    config:
+      required: true
+      date_format: 
+      time_format: 
+      display_utc: false
+    default: now
+  - name: project_end_date
+    type: datetime
+    label: Project End Date
+    description: End date of the project.
+    config:
+      required: false
+      date_format: 
+      time_format: 
+      display_utc: false
+    default: now
+  label: Project Timeframe
+  description: Timeframe of the project.
+- name: services
+  type: select
+  default: Responsive Web Design
+  config:
+    required: true
+    options:
+    - Responsive Web Design
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Services
+  description: Select the services provided to the client.
+- name: technologies_and_tools
+  type: select
+  default: []
+  config:
+    required: false
+    options:
+    - Wordpress
+    - React
+    - JQuery
+    source:
+      type: simple
+      section: 
+      file: 
+      path: 
+  label: Technologies & Tools
+  description: Technologies and Tools used for the Job.
