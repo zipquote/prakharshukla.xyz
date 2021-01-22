@@ -1,16 +1,16 @@
 ---
 date: 2021-01-12T18:26:37Z
 title: Creating components in Twig
-excerpt: How to make components in twig for DRY code and the convenience us JavaScript
+excerpt:
+  How to make components in twig for DRY code and the convenience us JavaScript
   developers have become accustomed to.
-cover_image: "/v1611340147/blog/twig_1_wdfasf.png"
-
+cover_image: '/v1611340147/blog/twig_1_wdfasf.png'
 ---
 
     export default function CodeBlock({ children, className }) {
       const language = className.replace(/language-/, '');
       const { theme, ...highlightProps } = defaultProps;
-    
+
       return (
         <Highlight
           {...highlightProps}
