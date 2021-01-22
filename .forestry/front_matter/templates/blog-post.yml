@@ -1,4 +1,38 @@
 ---
 label: Blog Post
 hide_body: false
-fields: []
+fields:
+- name: title
+  type: text
+  config:
+    required: true
+    min: 10
+  label: Title
+  description: Title of the blog post.
+- name: excerpt
+  type: textarea
+  default: ''
+  config:
+    required: true
+    wysiwyg: false
+    schema:
+      format: markdown
+    min: 25
+  label: Excerpt
+  description: Excerpt of the blog post.
+- name: cover_image
+  type: file
+  config:
+    maxSize: 5
+  label: Cover Image
+  description: Thumbnail
+- name: date
+  type: datetime
+  label: " Date"
+  description: The date this post was published or last updated.
+  config:
+    required: false
+    date_format: 
+    time_format: 
+    display_utc: false
+  default: now
