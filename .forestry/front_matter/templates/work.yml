@@ -82,5 +82,10 @@ fields:
       path: 
   label: Technologies & Tools
   description: Technologies and Tools used for the Job.
+- name: project_images
+  type: image_gallery
+  config: {}
+  label: Project Images
+  description: Add images/screenshots of the project.
 pages:
 - content/work/Siliconangle.mdx
