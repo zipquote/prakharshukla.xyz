@@ -68,7 +68,7 @@ fields:
   description: Select the services provided to the client.
 - name: technologies_and_tools
   type: select
-  default: []
+  default: ''
   config:
     required: false
     options:
