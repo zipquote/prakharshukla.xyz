@@ -1,8 +1,11 @@
 import classNames from 'classnames';
+import Prism from 'prism-react-renderer/prism';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
 import nightOwl from 'prism-react-renderer/themes/nightOwl';
 import { DarkModeContext } from '../../context';
+
+(typeof global !== 'undefined' ? global : window).Prism = Prism;
 
 export default function CodeBlock({ children, className }) {
   const language = className.replace(/language-/, '');
@@ -36,3 +39,6 @@ export default function CodeBlock({ children, className }) {
     </DarkModeContext.Consumer>
   );
 }
+
+//Langauge Support
+require('prismjs/components/prism-twig');
