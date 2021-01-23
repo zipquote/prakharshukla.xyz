@@ -1,18 +1,31 @@
+import getConfig from 'next/config';
 import hydrate from 'next-mdx-remote/hydrate';
-import { Layout, MDXComponents } from '../../../src/components';
+import { Layout, MDXComponents, SEO } from '../../../src/components';
 import { API } from '../../../src/utils';
 
-export default function PostPage({ source, frontMatter }) {
+export default function PostPage({ source, frontMatter, slug }) {
+  const {
+    publicRuntimeConfig: { website },
+  } = getConfig();
+
   const content = hydrate(source, { components: MDXComponents });
+
   return (
-    <Layout>
-      <article className="px-2 md:p-0 w-full mb-20">
-        <h1 className="font-butler-extra-bold text-xl md:text-6xl mt-10 dark:text-white">
-          {frontMatter.title}
-        </h1>
-        <div className="mt-10 blog">{content}</div>
-      </article>
-    </Layout>
+    <>
+      <SEO
+        title={frontMatter.title}
+        description={frontMatter.excerpt || frontMatter.title}
+        url={`${website}/posts/${slug}`}
+      />
+      <Layout>
+        <article className="px-2 md:p-0 w-full mb-20">
+          <h1 className="font-butler-extra-bold text-xl md:text-6xl mt-10 dark:text-white">
+            {frontMatter.title}
+          </h1>
+          <div className="mt-10 blog">{content}</div>
+        </article>
+      </Layout>
+    </>
   );
 }
 
@@ -23,6 +36,7 @@ export const getStaticProps = async ({ params }) => {
     props: {
       source: mdxSource,
       frontMatter,
+      slug: params.slug,
     },
   };
 };

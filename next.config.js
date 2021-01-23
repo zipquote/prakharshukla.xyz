@@ -32,6 +32,7 @@ module.exports = {
     images: {
       domains: ['res.cloudinary.com'],
     },
+    website: 'https://www.prakharshukla.xyz',
   },
   images: {
     domains: ['res.cloudinary.com'],
