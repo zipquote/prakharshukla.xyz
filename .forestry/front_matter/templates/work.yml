@@ -52,20 +52,6 @@ fields:
     default: now
   label: Project Timeframe
   description: Timeframe of the project.
-- name: services
-  type: select
-  default: Responsive Web Design
-  config:
-    required: true
-    options:
-    - Responsive Web Design
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: Services
-  description: Select the services provided to the client.
 - name: technologies_and_tools
   type: select
   default: ''
