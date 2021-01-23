@@ -13,3 +13,5 @@ export { default as CodeBlock } from './CodeBlock';
 export { default as ColorModeToggle } from './ColorModeToggle';
 export { default as Canvas } from './Canvas';
 export { default as BlogPostList } from './BlogPostList';
+export { default as ListOfWork } from './Work/ListOfWork';
+export { default as WorkItem } from './Work/WorkItem';

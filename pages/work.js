@@ -1,4 +1,4 @@
-import { Canvas, Layout } from '../src/components';
+import { Canvas, Layout, ListOfWork } from '../src/components';
 
 export default function Work() {
   return (
@@ -6,7 +6,7 @@ export default function Work() {
       <Canvas.SPLASH className="absolute" />
       <div className="absolute w-full">
         <Layout.FullWidth>
-          <div>Work</div>
+          <ListOfWork />
         </Layout.FullWidth>
       </div>
     </div>
