@@ -52,31 +52,15 @@ fields:
     default: now
   label: Project Timeframe
   description: Timeframe of the project.
-- name: technologies_and_tools
-  type: select
-  default: ''
-  config:
-    required: false
-    options:
-    - Wordpress
-    - React
-    - JQuery
-    source:
-      type: simple
-      section: 
-      file: 
-      path: 
-  label: Technologies & Tools
-  description: Technologies and Tools used for the Job.
-- name: project_images
-  type: image_gallery
-  config: {}
-  label: Project Images
-  description: Add images/screenshots of the project.
 - name: services
   type: tag_list
   default: []
   label: Services
   description: Select the services provided to the client.
+- name: project_images
+  type: image_gallery
+  config: {}
+  label: Project Images
+  description: Add images/screenshots of the project.
 pages:
 - content/work/Siliconangle.mdx
