@@ -1,19 +1,8 @@
 import { motion } from 'framer-motion';
 import classNames from 'classnames';
 
-const variants = {
-  hidden: { opacity: 0, visibility: 'hidden' },
-  visible: {
-    opacity: 1,
-    visibility: 'visible',
-    transition: {
-      delay: 0.2,
-    },
-  },
-};
-
 export default function WorkItemCompact({
-  item,
+  project,
   className,
   setAnimatedLayout,
   layoutId,
@@ -25,9 +14,13 @@ export default function WorkItemCompact({
       onClick={() => setAnimatedLayout(layoutId)}
       className={classNames('worklist__dialog p-4 mb-2', className)}
       animate={isSelected ? 'hidden' : 'visible'}
-      variants={variants}
     >
-      <motion.h3>{item.title}</motion.h3>
+      <motion.h3 className="font-butler-bold worklist__title">
+        {project.project_name}
+      </motion.h3>
+      <motion.p className="font-poppins worklist__description">
+        {project.project_description}
+      </motion.p>
     </motion.div>
   );
 }

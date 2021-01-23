@@ -20,7 +20,7 @@ const ITEMS = [
   },
 ];
 
-export default function ListOfWork() {
+export default function ListOfWork({ listOfWorks }) {
   const [selectedId, setSelectedId] = useState(null);
 
   const reset = () => setSelectedId(null);
@@ -28,12 +28,12 @@ export default function ListOfWork() {
   return (
     <AnimateSharedLayout>
       <ul className="flex flex-wrap mx-2 2xl:-mx-4 my-10">
-        {ITEMS.map((item) => (
-          <li key={item.id} className="w-full md:w-1/2 xl:w-1/3">
+        {listOfWorks.map(({ frontMatter }) => (
+          <li key={frontMatter.slug} className="w-full md:w-1/2 xl:w-1/3">
             <WorkItem.Compact
-              item={item}
-              layoutId={item.id}
-              isSelected={selectedId === item.id}
+              project={frontMatter}
+              layoutId={frontMatter.slug}
+              isSelected={selectedId === frontMatter.slug}
               setAnimatedLayout={setSelectedId}
               className="mr-5"
             />
@@ -44,7 +44,7 @@ export default function ListOfWork() {
         {selectedId && (
           <motion.div animate className="worklist__overlay" onClick={reset}>
             <WorkItem.Expanded
-              items={ITEMS}
+              projects={listOfWorks}
               closeWorkItem={reset}
               selectedItemId={selectedId}
               layoutId={selectedId}

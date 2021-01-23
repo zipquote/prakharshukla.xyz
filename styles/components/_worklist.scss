@@ -27,4 +27,24 @@
       @apply max-w-3xl 2xl:w-full mx-auto;
     }
   }
+
+  &__title {
+    @apply text-base mb-2;
+
+    &--expanded {
+      @apply text-xl mb-3;
+    }
+  }
+
+  &__description {
+    @apply text-sm text-gray-600;
+
+    &--expanded {
+      @apply text-base mb-3;
+    }
+  }
+
+  &__reset-button {
+    @apply absolute right-5 top-0 w-8 h-8 mt-2 bg-gray-100 rounded-full;
+  }
 }
