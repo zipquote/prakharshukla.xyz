@@ -8,7 +8,13 @@ module.exports = {
       use: ['@svgr/webpack'],
     };
 
+    const htmlLoaderConfig = {
+      test: /\.html$/i,
+      use: ['html-loader'],
+    };
+
     config.module.rules.push(svgrConfig);
+    config.module.rules.push(htmlLoaderConfig);
 
     return config;
   },
