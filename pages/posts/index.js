@@ -37,7 +37,7 @@ export default function Index({ posts }) {
 }
 
 export function getStaticProps() {
-  const posts = API.getPostsData();
+  const posts = API.getContent.posts();
 
   return { props: { posts } };
 }

@@ -17,7 +17,7 @@ export default function PostPage({ source, frontMatter }) {
 }
 
 export const getStaticProps = async ({ params }) => {
-  const { frontMatter, mdxSource } = await API.getDocumentBySlug(params);
+  const { frontMatter, mdxSource } = await API.getDocumentBySlug.posts(params);
 
   return {
     props: {
@@ -28,7 +28,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const paths = API.getFilePaths();
+  const paths = API.getDocumentPaths.posts();
 
   return {
     paths,
