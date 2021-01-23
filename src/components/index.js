@@ -15,3 +15,4 @@ export { default as Canvas } from './Canvas';
 export { default as BlogPostList } from './BlogPostList';
 export { default as ListOfWork } from './Work/ListOfWork';
 export { default as WorkItem } from './Work/WorkItem';
+export { default as Timeline } from './Timeline';

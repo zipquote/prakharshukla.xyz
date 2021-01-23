@@ -1,0 +1,16 @@
+.timeline {
+  &:before,
+  .dark &::before {
+    @apply bg-gray-600 w-4 h-4 absolute -left-2;
+    content: '';
+    display: block;
+  }
+
+  .dark &::before {
+    @apply text-white bg-white;
+  }
+
+  &:not(:last-child) .timeline__event-details {
+    @apply mb-10;
+  }
+}
