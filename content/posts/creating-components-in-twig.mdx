@@ -1,36 +1,52 @@
 ---
 date: 2021-01-12T18:26:37.000+00:00
 title: Creating components in Twig
-excerpt: How to make components in twig for DRY code and the convenience us JavaScript
+excerpt:
+  How to make components in twig for DRY code and the convenience us JavaScript
   developers have become accustomed to.
-cover_image: "/v1611340147/blog/twig_1_wdfasf.png"
-
+cover_image: '/v1611340147/blog/twig_1_wdfasf.png'
 ---
-<NavLink href="/" className="p-4">Home</NavLink>
 
-```jsx
-export default function CodeBlock({ children, className }) {
-    	const language = className.replace(/language-/, '');
-    	const { theme, ...highlightProps } = defaultProps;
-    	return (
-            <Highlight
-              {...highlightProps}
-              theme={nightOwlLight}
-              code={children}
-              language={language}
-            >
-              {({ className, style, tokens, getLineProps, getTokenProps }) => (
-                <pre className={className} style={{ ...style, padding: '20px' }}>
-                  {tokens.map((line, i) => (
-                    <div key={i} {...getLineProps({ line, key: i })}>
-                      {line.map((token, key) => (
-                        <span key={key} {...getTokenProps({ token, key })} />
-                      ))}
-                    </div>
-                  ))}
-                </pre>
-              )}
-        	</Highlight>
-      	);
-    }
+<NavLink href="/" className="p-4">
+  Home
+</NavLink>
+
+```twig
+{% macro Button(attrs = {}) %}
+  {% import _self as appIcons %}
+
+  {% set label = '' %}
+  {% set title = '' %}
+  {% set type = "button" %}
+  {% set element = "button" %}
+  {% set variant = "primary" %}
+  {% set disabled = false %}
+  {% set attributes = '' %}
+  {% set classname = [] %}
+
+  {% for key, attr in attrs %}
+    {% if key == "label" %}
+      {% set label =  attr %}
+    {% elseif key == "type" %}
+      {% set type = attr %}
+    {% elseif key == "class" %}
+      {% set classname = attr %}
+    {% elseif key == "variant" %}
+      {% set variant =  attr %}
+    {% elseif key == "disabled" %}
+      {% set disabled = attr %}
+    {% elseif key == "islink" and attr == true %}
+      {% set element = "a" %}
+    {% else %}
+      {% set attributes = attributes ~ key|e('html_attr') ~ '="' ~ attr|e('html_attr') ~ '" ' %}
+    {% endif %}
+  {% endfor %}
+
+  <{{element}} type="{{ type }}" class=".btn .btn-{{ variant }} {{ classname|join(' ') }}" title="{{label}}" {{attributes|raw}} {% if disabled %} disabled {% endif %} >
+    {{ _self.RenderIcon(icon) }}
+    {% if label %}
+      <span>{{ label }}</span>
+    {% endif %}
+  </{{element}}>
+{% endmacro %}
 ```
