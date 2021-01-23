@@ -1,5 +1,4 @@
 import hydrate from 'next-mdx-remote/hydrate';
-import Link from 'next/link';
 import { Layout, MDXComponents } from '../../../src/components';
 import { API } from '../../../src/utils';
 
