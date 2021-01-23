@@ -73,5 +73,10 @@ fields:
   config: {}
   label: Project Images
   description: Add images/screenshots of the project.
+- name: services
+  type: tag_list
+  default: []
+  label: Services
+  description: Select the services provided to the client.
 pages:
 - content/work/Siliconangle.mdx
