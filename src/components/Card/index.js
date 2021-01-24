@@ -5,12 +5,16 @@ import CardFooter from './CardFooter';
 import CardTitle from './CardTitle';
 import CardImage from './CardImage';
 
-export default function Card({ children, className, ...otherProps }) {
+export default function Card({ children, className, type, ...otherProps }) {
   return (
     <div
       className={classNames(
         'card rounded-md overflow-hidden flex flex-col p-4',
-        className
+        className,
+        {
+          card: type === 'compact',
+          'card--expanded': type !== 'compact',
+        }
       )}
       {...otherProps}
     >
