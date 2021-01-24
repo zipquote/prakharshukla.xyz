@@ -12,7 +12,7 @@ export default function Card({ children, className, type, ...otherProps }) {
         'card rounded-md overflow-hidden flex flex-col p-4',
         className,
         {
-          card: type === 'compact',
+          'card hover:bg-gray-100 dark:hover:bg-gray-600': type === 'compact',
           'card--expanded': type !== 'compact',
         }
       )}

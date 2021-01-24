@@ -6,10 +6,10 @@ export default function Index({ posts }) {
     <Layout.FullWidth>
       <div className="sm:w-4/5 lg:w-3/4 mx-auto mb-10">
         <div className="relative -top-10 bg-white px-4 pb-5 rounded hero-content">
-          <h4 className="font-butler-bold text-3xl py-3 dark:text-white border-b border-black dark:border-white border-dashed">
+          <h4 className="font-butler-bold text-3xl mx-3 py-3 dark:text-white border-b border-black dark:border-white border-dashed">
             Latest Posts
           </h4>
-          <ul className="flex flex-wrap xl:-mx-4">
+          <ul className="flex flex-wrap px-3 mt-3 xl:-mx-4">
             {posts.map(({ frontMatter }) => {
               return (
                 <li key={frontMatter.slug} className="w-full mb-5">
