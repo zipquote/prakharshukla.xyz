@@ -3,6 +3,7 @@ import CardHeader from './CardHeader';
 import CardBody from './CardBody';
 import CardFooter from './CardFooter';
 import CardTitle from './CardTitle';
+import CardImage from './CardImage';
 
 export default function Card({ children, className, ...otherProps }) {
   return (
@@ -22,3 +23,4 @@ Card.Header = CardHeader;
 Card.Body = CardBody;
 Card.Footer = CardFooter;
 Card.Title = CardTitle;
+Card.Image = CardImage;

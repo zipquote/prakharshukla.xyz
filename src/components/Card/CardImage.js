@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import classNames from 'classnames';
 
-export default function CustomImage({ type, className, ...otherProps }) {
+export default function CardImage({ type, className, ...otherProps }) {
   return (
     <div
       className={classNames(
@@ -18,7 +18,3 @@ export default function CustomImage({ type, className, ...otherProps }) {
     </div>
   );
 }
-
-CustomImage.defaultProps = {
-  type: 'default',
-};

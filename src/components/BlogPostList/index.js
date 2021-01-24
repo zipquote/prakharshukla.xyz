@@ -1,4 +1,4 @@
-import { Image, Card, PostDate, PostExcerpt } from '../';
+import { Card, PostDate, PostExcerpt } from '../';
 import { resolveImageDomain } from '../../utils/common';
 
 export default function BlogPostList({ frontMatter, type }) {
@@ -6,7 +6,7 @@ export default function BlogPostList({ frontMatter, type }) {
     <Card className="h-full">
       {type !== 'compact' && (
         <Card.Header>
-          <Image
+          <Card.Image
             src={`${resolveImageDomain('cloudinary')}${
               frontMatter.cover_image
             }`}
