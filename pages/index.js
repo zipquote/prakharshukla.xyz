@@ -5,7 +5,7 @@ export default function Index({ posts }) {
   return (
     <Layout.FullWidth>
       <div className="sm:w-4/5 lg:w-3/4 mx-auto mb-10">
-        <div className="relative -top-10 bg-white px-4 pb-5 rounded hero-content">
+        <div className="relative -top-10 bg-white px-4 pb-5 rounded hero__bloglist">
           <h4 className="font-butler-bold text-3xl mx-3 py-3 dark:text-white border-b border-black dark:border-white border-dashed">
             Latest Posts
           </h4>

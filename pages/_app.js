@@ -1,7 +1,7 @@
 import '../styles/main.scss';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { Header, Footer } from '../src/components';
+import { Header, Footer, Hero } from '../src/components';
 import { DarkModeProvider, DarkModeContext } from '../src/context';
 
 function MyApp({ Component, pageProps }) {
@@ -24,15 +24,11 @@ function MyApp({ Component, pageProps }) {
               <Header />
               <main
                 className={classNames('main dark:bg-black', {
-                  'hero-wrapper mt-10': isIndexPage,
+                  'hero__wrapper mt-10': isIndexPage,
                   'mt-20': !isIndexPage,
                 })}
               >
-                {isIndexPage && (
-                  <div className="hero-image">
-                    <img src="/images/hero.png" alt="Homepage banner" />
-                  </div>
-                )}
+                {isIndexPage && <Hero />}
                 <Component {...pageProps} />
               </main>
               <Footer />

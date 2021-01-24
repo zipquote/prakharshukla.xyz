@@ -1,6 +1,6 @@
 .hero {
-  $height: 25%;
-  &-image {
+  $height: 25rem;
+  &__image {
     @apply absolute top-0 left-0 h-0 w-full overflow-hidden;
     padding-bottom: $height;
 
@@ -9,11 +9,11 @@
     }
   }
 
-  &-wrapper {
+  &__wrapper {
     padding-top: $height * 0.8;
   }
 
-  .dark &-content {
+  .dark &__bloglist {
     background-color: rgba(49, 49, 49, 1);
   }
 }
