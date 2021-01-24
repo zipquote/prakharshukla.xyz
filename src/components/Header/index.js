@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import classNames from 'classnames';
+import { motion } from 'framer-motion';
 import { Brand, Button, ColorModeToggle, Layout } from '../../components';
 import HeaderMenu from './HeaderMenu';
 import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
@@ -22,14 +23,14 @@ export default function Header() {
             <HamburgerIcon />
           </Button>
         </div>
-        <div
-          className={classNames('overflow-hidden', {
-            'h-0': !isMenuOpen,
-            'h-full': isMenuOpen,
-          })}
+        <motion.div
+          className={classNames('overflow-hidden')}
+          animate={{ height: isMenuOpen ? 'auto' : 0 }}
+          initial={{ height: 0 }}
+          transition={{ height: { duration: 0.5 } }}
         >
           <HeaderMenu />
-        </div>
+        </motion.div>
       </Layout.FullWidth>
     </header>
   );
