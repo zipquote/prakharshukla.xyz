@@ -69,4 +69,5 @@ fields:
   description: Add images/screenshots of the project.
 pages:
 - content/work/Siliconangle.mdx
+- content/work/thecube.mdx
 - content/work/wikibon.mdx
