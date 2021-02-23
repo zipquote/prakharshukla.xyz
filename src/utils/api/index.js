@@ -40,7 +40,19 @@ function getContent(type) {
   });
 }
 
-getContent.works = () => getContent(CONTENT_TYPES.WORKS);
+getContent.works = () => {
+  const data = getContent(CONTENT_TYPES.WORKS);
+  return data.sort((a, b) => {
+    const firstObjProjectEndDate =
+      a.frontMatter.project_timeframe.project_end_date;
+    const secondObjProjectEndDate =
+      b.frontMatter.project_timeframe.project_end_date;
+    if (firstObjProjectEndDate > secondObjProjectEndDate) return -1;
+    if (firstObjProjectEndDate < secondObjProjectEndDate) return 1;
+    return 0;
+  });
+};
+
 getContent.posts = () => getContent();
 
 function getDocumentPaths(type) {
