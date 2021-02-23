@@ -1,0 +1,226 @@
+---
+date: 2021-02-17T15:11:10.000+00:00
+title: Creating typewriter effect using JavaScript
+excerpt: Step By Step tutorial describing how to create typewriter effect using JavaScript in few simple steps.
+cover_image: '/v1611340147/blog/twig_1_wdfasf.png'
+---
+
+In this tutorial, I'll be going over how I built typewriter effect on one of my websites with a little bit of JavaScript and some tea in the afternoon.
+
+There are quite a few tutorials, that go about achieving this. There are some very clever ones using Pure CSS and even an NPM package that provides this and much more.
+
+However, I'm not very clever with CSS and I didn't want to add a few KB's to my bundle for a simple thing. Plus it's a bit of practice and some good fun to build one by myself.
+
+### Setup
+
+First we create an HTML file with following bit of code.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typewriter Effect</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js"></script>
+  </head>
+  <body>
+    <div class="text">
+      <span id="typewriter"></span>
+      <span class="cursor-blinking">|</span>
+    </div>
+  </body>
+</html>
+```
+
+Just a basic template for us to get started with. `#typewriter` is where our text would go and following that we have a blinking cursor. Let's add some CSS to have our cursor blinking.
+
+```css
+.text {
+  font-size: 4rem;
+}
+
+@keyframes blinking {
+  0% {
+    color: transparent;
+  }
+  50% {
+    color: inherit;
+  }
+  100% {
+    color: transparent;
+  }
+}
+
+.cursor-blinking {
+  animation: 1s blinking step-end infinite;
+}
+```
+
+This will :
+
+- Render our text, nice and big.
+- Register a `keyframe` animation that repeats every **1s** **infinitely** switching text color from `transparent` to `inherit` giving us our **blinking cursor**.
+
+### JavaScripty Bit
+
+I first wrote this code with a bunch of `functions` and later refactored it into a `class` .
+
+```javascript
+class TypeWriter {
+  constructor(words, element) {
+    this.words = words;
+    this.element = element;
+    this.rafReference = null;
+  }
+}
+```
+
+We will create a `class` **TypeWriter** which would accept an array of **words** and a DOM Node **element**.
+
+Now we need to loop over this **array of words**. So we'll create a method on our class called `loop`.
+
+```javascript
+  loop(fn, dt) {
+    let raf;
+    let dateTime = dt;
+    const currentTime = new Date().getTime();
+    const delta = currentTime - dateTime;
+
+    if (delta >= 250) {
+      dateTime = currentTime;
+      fn(raf);
+    }
+
+    this.rafReference = requestAnimationFrame(() => {
+      this.loop(fn, dateTime);
+    });
+  }
+```
+
+Here, we're calculating `delta` between our `currentTime` and previous `dateTime` and if `delta` is more than `250ms`, we call our **callback function**.
+
+Magic number **250** is the time it takes an average typist to type a character assuming an average person types 50-60 words per minute and an average word is 5-4 characters long. Adjust it as you see fit.
+
+Using `requestAnimationFrame` we can tell the browser to call a function before next repaint. we thus, recursively call `loop` method with `callback` and current `dateTime` as arguments.
+
+We'll now update our constructor :
+
+```javascript
+constructor(words, element) {
+    this.words = words;
+    this.wordIdx = 0; //Current Word Index
+    this.charIdx = 0; //Current character Index
+    this.charIncrementor = 1; //Increment character by 1
+    this.element = element;
+    this.delay = 5;//Wait time it takes to type 5 chars at end
+    this.currWord = this.words[this.wordIdx]; //Current Word
+    this.rafReference = null;
+}
+```
+
+Next we add an `init` method to initialise animation and `incrementCharacters` to type one character at a time.
+
+```javascript
+incrementCharacters() {
+    this.charIdx += this.charIncrementor;
+}
+```
+
+```javascript
+animate(word, end) {
+    this.element.innerHTML = word.substring(0, end);
+}
+
+init(fn) {
+    this.loop(() => {
+      this.incrementCharacters(); //Increment characterIndex
+	  // Type character on the screen at a time.
+      this.animate(this.words[this.wordIdx], this.charIdx);
+    }, new Date().getTime());
+  }
+```
+
+We would now like to wait sometime when we're done typing and then delete the characters we've typed on the screen.
+
+```javascript
+if (this.charIdx === this.currWord.length + this.delay) {
+  //Remove characters now that we've reached end of the word.
+  this.charIncrementor = -1;
+}
+```
+
+We'd like to move onto next word when we're done with our current word. Hence,
+
+```javascript
+nextWord() {
+    this.wordIdx += 1;
+    this.charIncrementor = 1;
+    this.currWord = this.words[this.wordIdx];
+}
+
+if (this.charIdx === 0) {
+    // When all characters of previous word have been hidden.
+    this.nextWord();
+}
+```
+
+When we're done with last word, we'd like to start again in a loop with the first word in array.
+
+```javascript
+reset() {
+    this.wordIdx = 0;
+    this.charIdx = 0;
+    this.charIncrementor = 1;
+    this.currWord = this.words[this.wordIdx];
+}
+
+if (this.wordIdx === this.words.length) {
+   //Start again from first word now that we have reached end.
+   this.reset();
+}
+```
+
+When using something like React, we'd like to clear all animations when component unmounts which is how I'm currently using this animation. We'll add a `destroy` function. This is where our `this.rafReference` will be required.
+
+```javascript
+destroy() {
+    cancelAnimationFrame(this.rafReference);
+}
+```
+
+Finally we'll update our HTML file.
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Typewriter Effect</title>
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/script.js"></script>
+  </head>
+  <body>
+    <div class="text">
+      <span id="typewriter"></span>
+      <span class="cursor-blinking">|</span>
+    </div>
+    <script>
+      const words = ['Bananas', 'Apples', 'Lorem Ipsum Dolor Sit Amet'];
+      const typewriter = document.getElementById('typewriter');
+      const writer = new TypeWriter(words, typewriter);
+      writer.init();
+    </script>
+  </body>
+</html>
+```
+
+<Glitch
+  embedUrl="https://glitch.com/embed/#!/embed/brass-petalite-dash?path=script.js&previewSize=0"
+  title="brass-petalite-dash on Glitch"
+  allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+/>
+
+That's it folks!
