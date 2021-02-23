@@ -2,6 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { NavLink } from '../';
 import catbutton from '../../../public/snippets/html/catbutton.html';
+import { Glitch } from '../Embeds';
 
 function CatButton() {
   return (
@@ -19,6 +20,7 @@ const MDXComponents = {
   Head,
   code: CodeBlock,
   CatButton,
+  Glitch,
 };
 
 export default MDXComponents;
