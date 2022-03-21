@@ -7,7 +7,9 @@ export default function TimelineEventTimeframe({ timeframe }) {
     <span className="timeline__year font-jetbrains text-sm mb-2 text-gray-700 dark:text-white">
       {duration(timeframe.project_start_date)}
       {' - '}
-      {duration(timeframe.project_end_date)}
+      {timeframe?.project_end_date
+        ? duration(timeframe.project_end_date)
+        : 'Present'}
     </span>
   );
 }
