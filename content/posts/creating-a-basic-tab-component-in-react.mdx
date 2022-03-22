@@ -1,191 +1,213 @@
 ---
 date: 2022-01-17T11:30:00Z
 title: Creating a basic Tab component in React
-excerpt: We'll be creating a basic tab component in this tutorial. It will require
+excerpt:
+  We'll be creating a basic tab component in this tutorial. It will require
   some knowledge of hooks(useState) and React top-level API.
-cover_image: "/v1647966133/blog/3_vvtopv.png"
-
+cover_image: '/v1647966133/blog/3_vvtopv.png'
 ---
+
 The Tab component is a very basic component. Any complex app likely has one and there are quite a few solutions already out there. Implementing a tab component can be as easy as adding some CSS and toggling panes using that, much like what Bootstrap and other CSS frameworks do.
 
 But, I decided to implement one myself in React. I'll admit, it does appear a bit convoluted but it was good practice and I decided to blog about it thinking someone might find it useful. So here goes.
 
 First, let's chalk out an outline of our component.
 
-    import React, { useState } from 'react';
-    import PropTypes from 'prop-types';
-    
-    //Tab nav and corresponding Tab pane must have same ID.
-    function Tabs({ children, activeTabDefault, ...otherProps }) {
-      const [activeTab, setActiveTab] = useState(activeTabDefault);
-      return (
-      	<div className="tab" {...otherProps}>
-         {children}
-        </div>
-      )
-    }
-    
-    function TabNav({ children, ...otherProps }) {
-      return React.createElement(React.Fragment, [otherProps], children);
-    }
-    
-    function TabPane({ children, ...otherProps }) {
-      return React.createElement(React.Fragment, [otherProps], children);
-    }
-    
-    Tabs.Nav = TabNav;
-    Tabs.Pane = TabPane;
-    
-    Tabs.propTypes = {
-      activeTabDefault: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired
-    }
-    
-    export default Tabs;
+```jsx
+import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+
+//Tab nav and corresponding Tab pane must have same ID.
+function Tabs({ children, activeTabDefault, ...otherProps }) {
+  const [activeTab, setActiveTab] = useState(activeTabDefault);
+  return (
+    <div className="tab" {...otherProps}>
+      {children}
+    </div>
+  );
+}
+
+function TabNav({ children, ...otherProps }) {
+  return React.createElement(React.Fragment, [otherProps], children);
+}
+
+function TabPane({ children, ...otherProps }) {
+  return React.createElement(React.Fragment, [otherProps], children);
+}
+
+Tabs.Nav = TabNav;
+Tabs.Pane = TabPane;
+
+Tabs.propTypes = {
+  activeTabDefault: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
+};
+
+export default Tabs;
+```
 
 Here, we have created three components. TabNav and TabPane are nearly identical and we can always refactor them later. I intended to use them as such.
 
-    export default function Home() {
-      return (
-        <div>
-          <Tabs activeTabDefault="tab-2">
-            <Tabs.Nav>
-              <span id="tab-1">Tab 1</span>
-              <span id="tab-2">Tab 2</span>
-              <span id="tab-3">Tab 3</span>
-            </Tabs.Nav>
-            <Tabs.Pane>
-              <div id="tab-1">Tab 1</div>
-              <div id="tab-2">Tab 2</div>
-              <div id="tab-3">Tab 3</div>
-            </Tabs.Pane>
-          </Tabs>
-        </div>
-      );
-    }
+```jsx
+export default function Home() {
+  return (
+    <div>
+      <Tabs activeTabDefault="tab-2">
+        <Tabs.Nav>
+          <span id="tab-1">Tab 1</span>
+          <span id="tab-2">Tab 2</span>
+          <span id="tab-3">Tab 3</span>
+        </Tabs.Nav>
+        <Tabs.Pane>
+          <div id="tab-1">Tab 1</div>
+          <div id="tab-2">Tab 2</div>
+          <div id="tab-3">Tab 3</div>
+        </Tabs.Pane>
+      </Tabs>
+    </div>
+  );
+}
+```
 
 Here, the **Tabs** component will accept **Tabs.Nav** and **Tabs.Pane** as children. The user can toggle panes by clicking on navigation. Which pane should be shown is decided based on `id` prop passed to nav and panes. Additionally, our component accepts, a prop `activeTabDefault` , so that a default tab is visible when the component mounts.
 
-Back to our <Tabs> component.
+Back to our **Tabs** component.
 
-    function Tabs({ children, activeTabDefault, ...otherProps }) {
-      const [activeTab, setActiveTab] = useState(activeTabDefault);
-      return (
-      	<div className="tab" {...otherProps}>
-         {React.Children.map(children, (child) => {
-         	if(child.type.name === 'TabNav') {
-              return (
-                <div className='tab-nav'>
-                  {React.Children.map(child.props.children, (child) => {
-                    if (React.isValidElement(child)) {
-                      return React.cloneElement(child, { 
-                        className: `${child.props?.className || ''} ${child.props.id === activeTab ? 'active' : ''}`,
-                        onClick: () => {
-                          setActiveTab(child.props.id);
-                          if(child.props.onClick) {
-                            child.props.onClick();
-                          }
-                        }
-                      });
-                    }
-    
-                    return child;
-                  })}
-                </div>
-              );
-            }
-         })}
-        </div>
-      )
-    }
+```jsx
+function Tabs({ children, activeTabDefault, ...otherProps }) {
+  const [activeTab, setActiveTab] = useState(activeTabDefault);
+  return (
+    <div className="tab" {...otherProps}>
+      {React.Children.map(children, (child) => {
+        if (child.type.name === 'TabNav') {
+          return (
+            <div className="tab-nav">
+              {React.Children.map(child.props.children, (child) => {
+                if (React.isValidElement(child)) {
+                  return React.cloneElement(child, {
+                    className: `${child.props?.className || ''} ${
+                      child.props.id === activeTab ? 'active' : ''
+                    }`,
+                    onClick: () => {
+                      setActiveTab(child.props.id);
+                      if (child.props.onClick) {
+                        child.props.onClick();
+                      }
+                    },
+                  });
+                }
 
-Here, I'm looping over `children` and checking for **TabNav**. If found, I'll wrap it in a  `div` with our custom class name `tab-nav` . We'll next be looping over, its children. If a valid child, we'll be passing it an additional prop, `onClick` . Here, we'll set the current active tab using `useState` hook.
+                return child;
+              })}
+            </div>
+          );
+        }
+      })}
+    </div>
+  );
+}
+```
+
+Here, I'm looping over `children` and checking for **TabNav**. If found, I'll wrap it in a `div` with our custom class name `tab-nav` . We'll next be looping over, its children. If a valid child, we'll be passing it an additional prop, `onClick` . Here, we'll set the current active tab using `useState` hook.
 
 Now, all we're left with is the part where we need to filter, which pane to show based on the tab that is active.
 
-    function Tabs({ children, activeTabDefault, variant, ...otherProps }) {
-      const [activeTab, setActiveTab] = useState(activeTabDefault);
-      
-      return (
-        <div className={`tab tab--${variant}`} {...otherProps}>
-          {React.Children.map(children, (child) => {
-            if(child.type.name === 'TabNav') { //Check below
-              return (
-                <div className='tab-nav d-flex align-items-center'>
-                  {React.Children.map(child.props.children, (child) => {
-                    if (React.isValidElement(child)) {
-                      return React.cloneElement(child, { 
-                        className: `${child.props?.className || ''} ${child.props.id === activeTab ? 'active' : ''}`,
-                        onClick: () => {
-                          setActiveTab(child.props.id);
-                          if(child.props.onClick) {
-                            child.props.onClick();
-                          }
-                        }
-                      });
-                    }
-    
-                    return child;
-                  })}
-                </div>
-              );
-            } else {
-              return (
-                <div className="tab-pane">
-                  {React.Children.toArray(child.props.children).filter((child) => {
-                    if (React.isValidElement(child) && child.props.id === activeTab) {
-                      return React.cloneElement(child, {
-                        className: `${child.props?.className || ''} ${child.props.id === activeTab ? 'active' : ''}`,
-                      });
-                    }
-                    
-                  })}
-                </div>
-              )
-            }
-          })}
-        </div>
-      )
-    }
+```jsx
+function Tabs({ children, activeTabDefault, variant, ...otherProps }) {
+  const [activeTab, setActiveTab] = useState(activeTabDefault);
 
-We'll be looping over all the children of <Tabs.Pane> same as <Tabs.Pill>. Here, we'll filter our active pane based on `activeTab` and return it. We're additionally adding `active` so as to allow some control over styling the active tab pane when necessary.
+  return (
+    <div className={`tab tab--${variant}`} {...otherProps}>
+      {React.Children.map(children, (child) => {
+        if (child.type.name === 'TabNav') {
+          //Check below
+          return (
+            <div className="tab-nav d-flex align-items-center">
+              {React.Children.map(child.props.children, (child) => {
+                if (React.isValidElement(child)) {
+                  return React.cloneElement(child, {
+                    className: `${child.props?.className || ''} ${
+                      child.props.id === activeTab ? 'active' : ''
+                    }`,
+                    onClick: () => {
+                      setActiveTab(child.props.id);
+                      if (child.props.onClick) {
+                        child.props.onClick();
+                      }
+                    },
+                  });
+                }
+
+                return child;
+              })}
+            </div>
+          );
+        } else {
+          return (
+            <div className="tab-pane">
+              {React.Children.toArray(child.props.children).filter((child) => {
+                if (
+                  React.isValidElement(child) &&
+                  child.props.id === activeTab
+                ) {
+                  return React.cloneElement(child, {
+                    className: `${child.props?.className || ''} ${
+                      child.props.id === activeTab ? 'active' : ''
+                    }`,
+                  });
+                }
+              })}
+            </div>
+          );
+        }
+      })}
+    </div>
+  );
+}
+```
+
+We'll be looping over all the children of **Tabs.Pane** same as **Tabs.Pill**. Here, we'll filter our active pane based on `activeTab` and return it. We're additionally adding `active` so as to allow some control over styling the active tab pane when necessary.
 
 This code might be far from perfect as there is always room for improvement. Next, let's add some styling and make it pretty.
 
-    * {
-      box-sizing: border-box;
-    }
-    
-    body {
-      background: antiquewhite;
-    }
-    
-    .tab {
-      margin: 1rem;
-    }
-    
-    .tab-nav span {
-      padding: 4px 4px 0 4px;
-      border-top: 1px solid black;
-      border-right: 1px solid black;
-      border-left: 1px solid black;
-      margin-right: 2px;
-      background: azure;
-      cursor: pointer;
-    }
-    
-    .tab-nav span.active {
-      background-color: aquamarine;
-    }
-    
-    .tab-pane {
-      border: 1px solid black;
-      padding: 1rem;
-      background-color: white;
-    }
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: antiquewhite;
+}
+
+.tab {
+  margin: 1rem;
+}
+
+.tab-nav span {
+  padding: 4px 4px 0 4px;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  margin-right: 2px;
+  background: azure;
+  cursor: pointer;
+}
+
+.tab-nav span.active {
+  background-color: aquamarine;
+}
+
+.tab-pane {
+  border: 1px solid black;
+  padding: 1rem;
+  background-color: white;
+}
+```
 
 Here's how it looks finished.
 
-<Glitch embedUrl="[https://glitch.com/embed/#](https://glitch.com/embed/# "https://glitch.com/embed/#") "[https://glitch.com/embed/#](https://glitch.com/embed/# "https://glitch.com/embed/#")")!/embed/chestnut-twisty-fog?path=src/styles/styles.css&previewSize=0" title="chestnut-twisty-fog on Glitch" allow="geolocation; microphone; camera; midi; encrypted-media; xr-spatial-tracking; fullscreen" />
+<Glitch
+  embedUrl="https://glitch.com/embed/#!/embed/chestnut-twisty-fog?path=src/styles/styles.css&previewSize=0"
+  title="chestnut-twisty-fog on Glitch"
+  allow="geolocation; microphone; camera; midi; vr; encrypted-media"
+/>
