@@ -3,7 +3,7 @@ date: 2022-01-17T11:30:00Z
 title: Creating a basic Tab component in React
 excerpt: We'll be creating a basic tab component in this tutorial. It will require
   some knowledge of hooks(useState) and React top-level API.
-cover_image: "/v1647882298/blog/tabs_fkom3f.png"
+cover_image: "/v1647966133/blog/3_vvtopv.png"
 
 ---
 The Tab component is a very basic component. Any complex app likely has one and there are quite a few solutions already out there. Implementing a tab component can be as easy as adding some CSS and toggling panes using that, much like what Bootstrap and other CSS frameworks do.
@@ -66,7 +66,7 @@ Here, we have created three components. TabNav and TabPane are nearly identical 
       );
     }
 
-Here, the **<Tabs>** component will accept **<Tabs.Nav>** and **<Tabs.Pane>** as children. The user can toggle panes by clicking on navigation. Which pane should be shown is decided based on `id` prop passed to nav and panes. Additionally, our component accepts, a prop `activeTabDefault` , so that a default tab is visible when the component mounts.
+Here, the **Tabs** component will accept **Tabs.Nav** and **Tabs.Pane** as children. The user can toggle panes by clicking on navigation. Which pane should be shown is decided based on `id` prop passed to nav and panes. Additionally, our component accepts, a prop `activeTabDefault` , so that a default tab is visible when the component mounts.
 
 Back to our <Tabs> component.
 
@@ -101,7 +101,7 @@ Back to our <Tabs> component.
       )
     }
 
-Here, I'm looping over `children` and checking for **<TabNav>**. If found, I'll wrap it in a  `div` with our custom class name `tab-nav` . We'll next be looping over, its children. If a valid child, we'll be passing it an additional prop, `onClick` . Here, we'll set the current active tab using `useState` hook.
+Here, I'm looping over `children` and checking for **TabNav**. If found, I'll wrap it in a  `div` with our custom class name `tab-nav` . We'll next be looping over, its children. If a valid child, we'll be passing it an additional prop, `onClick` . Here, we'll set the current active tab using `useState` hook.
 
 Now, all we're left with is the part where we need to filter, which pane to show based on the tab that is active.
 
