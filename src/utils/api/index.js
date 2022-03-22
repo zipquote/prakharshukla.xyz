@@ -43,12 +43,12 @@ function getContent(type) {
 getContent.works = () => {
   const data = getContent(CONTENT_TYPES.WORKS);
   return data.sort((a, b) => {
-    const firstObjProjectEndDate =
-      a.frontMatter.project_timeframe.project_end_date;
-    const secondObjProjectEndDate =
-      b.frontMatter.project_timeframe.project_end_date;
-    if (firstObjProjectEndDate > secondObjProjectEndDate) return -1;
-    if (firstObjProjectEndDate < secondObjProjectEndDate) return 1;
+    const firstObjProjectStartDate =
+      a.frontMatter.project_timeframe.project_start_date;
+    const secondObjProjectStartDate =
+      b.frontMatter.project_timeframe.project_start_date;
+    if (firstObjProjectStartDate > secondObjProjectStartDate) return -1;
+    if (firstObjProjectStartDate < secondObjProjectStartDate) return 1;
     return 0;
   });
 };
