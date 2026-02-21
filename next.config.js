@@ -18,23 +18,18 @@ module.exports = {
 
     return config;
   },
-  serverRuntimeConfig: {
-    sass: true,
-    sassOptions: {
-      includePaths: [path.join(__dirname, 'styles')],
-    },
-  },
-  publicRuntimeConfig: {
-    i18n: {
-      locales: ['en', 'hi'],
-      defaultLocale: 'en',
-    },
-    images: {
-      domains: ['res.cloudinary.com'],
-    },
-    website: 'https://www.prakharshukla.xyz',
+  i18n: {
+    locales: ['en', 'hi'],
+    defaultLocale: 'en',
   },
   images: {
-    domains: ['res.cloudinary.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };

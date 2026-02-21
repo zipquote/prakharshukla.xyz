@@ -1,19 +1,11 @@
-import getConfig from 'next/config';
-
 export const resolveImageDomain = (cmpr = 'cloudinary') => {
-  const {
-    publicRuntimeConfig: { images },
-  } = getConfig();
+  const imageDomain = process.env.NEXT_PUBLIC_IMAGE_DOMAIN;
 
-  const match = images.domains.find(
-    (domain) => domain.toLowerCase().indexOf(cmpr.toLowerCase()) >= 0
-  );
-
-  if (!match) return '';
+  if (!imageDomain) return '';
 
   if (cmpr === 'cloudinary') {
-    return `https://${match}/dvjphfbsq/image/upload`;
+    return `https://res.cloudinary.com/dvjphfbsq/image/upload`;
   } else {
-    return `https://${match}/`;
+    return `https://${imageDomain}/`;
   }
 };

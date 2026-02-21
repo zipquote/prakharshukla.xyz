@@ -1,12 +1,9 @@
-import getConfig from 'next/config';
 import hydrate from 'next-mdx-remote/hydrate';
 import { Layout, MDXComponents, SEO } from '../../../src/components';
 import { API } from '../../../src/utils';
 
 export default function PostPage({ source, frontMatter, slug }) {
-  const {
-    publicRuntimeConfig: { website },
-  } = getConfig();
+  const website = process.env.NEXT_PUBLIC_WEBSITE_URL;
 
   const content = hydrate(source, { components: MDXComponents });
 
