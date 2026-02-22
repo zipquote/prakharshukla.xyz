@@ -14,7 +14,7 @@ export default function PostPage({ source, frontMatter, slug }) {
         frontMatter={frontMatter}
       />
       <Layout>
-        <article className="px-2 md:p-0 w-full mb-20">
+        <article className="px-2 w-full mb-20">
           <h1 className="font-butler-extra-bold text-xl md:text-6xl mt-10 dark:text-white">
             {frontMatter.title}
           </h1>

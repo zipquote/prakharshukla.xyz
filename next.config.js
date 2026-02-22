@@ -1,7 +1,8 @@
+const withLinaria = require('next-with-linaria');
 const path = require('path');
 
 // eslint-disable-next-line no-undef
-module.exports = {
+module.exports = withLinaria({
   webpack: (config) => {
     const svgrConfig = {
       test: /\.svg$/,
@@ -33,4 +34,4 @@ module.exports = {
       },
     ],
   },
-};
+});
