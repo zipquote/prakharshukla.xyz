@@ -1,9 +1,14 @@
+import { styled } from '@linaria/react';
 import classNames from 'classnames';
+
+const StyledCardHeader = styled.div`
+  margin-bottom: 1rem;
+`;
 
 export default function CardHeader({ children, className, ...otherProps }) {
   return (
-    <div className={classNames('mb-4', className)} {...otherProps}>
+    <StyledCardHeader className={classNames(className)} {...otherProps}>
       {children}
-    </div>
+    </StyledCardHeader>
   );
 }

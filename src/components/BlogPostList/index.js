@@ -1,12 +1,14 @@
-import { Card, PostDate, PostExcerpt } from '../';
+import { StyledBlogPostList } from './styles';
+import PostDate from '../Post/PostDate';
+import PostExcerpt from '../Post/PostExcerpt';
 import { resolveImageDomain } from '../../utils/common';
 
 export default function BlogPostList({ frontMatter, type }) {
   return (
-    <Card className="h-full" type={type}>
+    <StyledBlogPostList className="h-full" type={type}>
       {type !== 'compact' && (
-        <Card.Header>
-          <Card.Image
+        <StyledBlogPostList.Header>
+          <StyledBlogPostList.Image
             src={`${resolveImageDomain('cloudinary')}${
               frontMatter.cover_image
             }`}
@@ -15,13 +17,13 @@ export default function BlogPostList({ frontMatter, type }) {
             layout="fill"
             className="card-image"
           />
-        </Card.Header>
+        </StyledBlogPostList.Header>
       )}
-      <Card.Body>
-        <Card.Title>{frontMatter.title}</Card.Title>
+      <StyledBlogPostList.Body>
+        <StyledBlogPostList.Title>{frontMatter.title}</StyledBlogPostList.Title>
         <PostDate postDate={frontMatter.date} />
         <PostExcerpt excerpt={frontMatter.excerpt} />
-      </Card.Body>
-    </Card>
+      </StyledBlogPostList.Body>
+    </StyledBlogPostList>
   );
 }

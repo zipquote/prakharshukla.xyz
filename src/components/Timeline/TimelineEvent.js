@@ -1,8 +1,42 @@
+import { styled } from '@linaria/react';
 import tinytime from 'tinytime';
 import TimelineEventMeta from './TimelineEventMeta';
 import TimelineEventTitle from './TimelineEventTitle';
 import TimelineEventTimeframe from './TimelineEventTimeframe';
 import TimelineEventExcerpt from './TimelineEventExcerpt';
+
+const TimelineEventWrapper = styled.div`
+  position: relative;
+  padding-left: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-left: 1px solid #a0aec0;
+
+  .dark & {
+    border-left: 1px solid #fff;
+  }
+`;
+
+const TimelineYear = styled.span`
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.5rem;
+  display: none;
+
+  .dark & {
+    color: #fff;
+  }
+
+  @media (min-width: 1280px) {
+    display: block;
+    position: absolute;
+    left: -5rem;
+  }
+`;
+
+const TimelineEventDetails = styled.div`
+  .timeline__event-details {
+    // Keeping this class for now to avoid breaking changes
+  }
+`;
 
 export default function TimelineEvent({ data }) {
   const {
@@ -15,17 +49,17 @@ export default function TimelineEvent({ data }) {
   } = data;
 
   return (
-    <div className="timeline relative pl-10 pb-10 border-l border-gray-600 dark:border-white">
-      <span className="timeline__year font-jetbrains mb-2 hidden xl:block xl:absolute xl:-left-20 dark:text-white">
+    <TimelineEventWrapper>
+      <TimelineYear>
         {tinytime('{YYYY}').render(timeframe.project_start_date)}
-      </span>
-      <div className="timeline__event-details">
+      </TimelineYear>
+      <TimelineEventDetails className="timeline__event-details">
         <TimelineEventTitle link={link} title={title} />
         <TimelineEventTimeframe timeframe={timeframe} />
         <TimelineEventExcerpt excerpt={description} />
         <TimelineEventMeta title="Services" tags={services} />
         <TimelineEventMeta title="Tech & Tools" tags={tools} />
-      </div>
-    </div>
+      </TimelineEventDetails>
+    </TimelineEventWrapper>
   );
 }

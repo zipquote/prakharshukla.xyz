@@ -1,9 +1,9 @@
-import classNames from 'classnames';
 import Prism from 'prism-react-renderer/prism';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
 import nightOwl from 'prism-react-renderer/themes/nightOwl';
 import { DarkModeContext } from '../../context';
+import { StyledCodeBlock } from './styles';
 
 (typeof global !== 'undefined' ? global : window).Prism = Prism;
 
@@ -19,12 +19,7 @@ export default function CodeBlock({ children, className }) {
           language={language}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <pre
-              className={classNames(className, {
-                codeblock: true,
-              })}
-              style={style}
-            >
+            <StyledCodeBlock className={className} style={style}>
               {tokens.map((line, i) => (
                 <div key={i} {...getLineProps({ line, key: i })}>
                   {line.map((token, key) => (
@@ -32,7 +27,7 @@ export default function CodeBlock({ children, className }) {
                   ))}
                 </div>
               ))}
-            </pre>
+            </StyledCodeBlock>
           )}
         </Highlight>
       )}

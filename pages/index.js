@@ -1,35 +1,99 @@
+import { styled } from '@linaria/react';
 import { API } from '../src/utils';
-import { NavLink, Layout, BlogPostList, Button } from '../src/components';
+import NavLink from '../src/components/NavLink';
+import Layout from '../src/components/Layout';
+import BlogPostList from '../src/components/BlogPostList';
+import Button from '../src/components/Button';
+
+const HeroBlogList = styled.div`
+  position: relative;
+  top: -2.5rem;
+  background-color: #fff;
+  padding: 0 1rem 1.25rem;
+  border-radius: 0.25rem;
+
+  .dark & {
+    background-color: #000;
+  }
+`;
+
+const LatestPosts = styled.h4`
+  font-family: 'Butler-Bold', sans-serif;
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  margin: 0 0.75rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px dashed #000;
+
+  .dark & {
+    color: #fff;
+    border-color: #fff;
+  }
+`;
+
+const PostList = styled.ul`
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 0.75rem;
+  margin-top: 0.75rem;
+
+  @media (min-width: 1280px) {
+    margin: 0 -1rem;
+  }
+`;
+
+const PostListItem = styled.li`
+  width: 100%;
+  margin-bottom: 1.25rem;
+`;
+
+const MoreButton = styled(Button)`
+  padding: 0 0.75rem;
+`;
+
+const BlogListContainer = styled.div`
+  margin: 0 auto 2.5rem;
+
+  @media (min-width: 640px) {
+    width: 80%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 75%;
+  }
+`;
+
+const MoreButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
 
 export default function Index({ posts }) {
   return (
     <Layout.FullWidth>
-      <div className="sm:w-4/5 lg:w-3/4 mx-auto mb-10">
-        <div className="relative -top-10 bg-white px-4 pb-5 rounded hero__bloglist">
-          <h4 className="font-butler-bold text-3xl mx-3 py-3 dark:text-white border-b border-black dark:border-white border-dashed">
-            Latest Posts
-          </h4>
-          <ul className="flex flex-wrap px-3 mt-3 xl:-mx-4">
+      <BlogListContainer>
+        <HeroBlogList>
+          <LatestPosts>Latest Posts</LatestPosts>
+          <PostList>
             {posts.map(({ frontMatter }) => {
               return (
-                <li key={frontMatter.slug} className="w-full mb-5">
+                <PostListItem key={frontMatter.slug}>
                   <NavLink
                     as={`/posts/${frontMatter.slug}`}
                     href="/posts/[slug]"
                   >
                     <BlogPostList frontMatter={frontMatter} type="compact" />
                   </NavLink>
-                </li>
+                </PostListItem>
               );
             })}
-          </ul>
-          <div className="flex items-center justify-center">
-            <Button href="/posts" className="px-3">
-              More
-            </Button>
-          </div>
-        </div>
-      </div>
+          </PostList>
+          <MoreButtonContainer>
+            <MoreButton href="/posts">More</MoreButton>
+          </MoreButtonContainer>
+        </HeroBlogList>
+      </BlogListContainer>
     </Layout.FullWidth>
   );
 }

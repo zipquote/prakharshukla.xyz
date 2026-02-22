@@ -1,5 +1,5 @@
 import { Children, cloneElement } from 'react';
-import classNames from 'classnames';
+import { StyledTabs, StyledTab, StyledTabPane } from './styles';
 import Tab from './Tab';
 import TabPane from './TabPane';
 
@@ -11,7 +11,7 @@ export default function Tabs({ children, id = 'tab', activeId = 0, onChange }) {
     ? children.filter((child) => child.type.name === 'TabPane')
     : [];
   return (
-    <div role="tablist" id={id}>
+    <StyledTabs role="tablist" id={id}>
       <div className="flex flex-row justify-items-start">
         {Children.map(tabs, (child, idx) => {
           const isActive = idx === Number(activeId);
@@ -22,12 +22,9 @@ export default function Tabs({ children, id = 'tab', activeId = 0, onChange }) {
             'aria-controls': `tabs-${id}-pane-${idx}`,
             'aria-selected': 'true',
           };
-          const className = classNames('px-2 py-1 ', child.props.className, {
-            active: isActive,
-          });
           return cloneElement(child, {
             ...tabProps,
-            className,
+            className: isActive ? 'active' : '',
             onClick: () => {
               onChange(idx);
             },
@@ -42,18 +39,14 @@ export default function Tabs({ children, id = 'tab', activeId = 0, onChange }) {
           id: `tabs-${id}-pane-${idx}`,
           'aria-labelledby': `tabs-${id}-tab-${idx}`,
         };
-        const className = classNames('px-2 py-1 ', child.props.className, {
-          active: isActive,
-          hidden: !isActive,
-        });
         return cloneElement(child, {
           ...tabPaneProps,
-          className,
+          className: isActive ? '' : 'hidden',
         });
       })}
-    </div>
+    </StyledTabs>
   );
 }
 
-Tabs.Tab = Tab;
-Tabs.Pane = TabPane;
+Tabs.Tab = StyledTab;
+Tabs.Pane = StyledTabPane;

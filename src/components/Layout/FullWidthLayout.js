@@ -1,4 +1,14 @@
+import { styled } from '@linaria/react';
 import classNames from 'classnames';
+
+const FullWidthSection = styled.section`
+  max-width: 100%;
+  margin: 0 auto;
+
+  @media (min-width: 1280px) {
+    max-width: 1024px;
+  }
+`;
 
 export default function FullWidthLayout({
   children,
@@ -6,11 +16,8 @@ export default function FullWidthLayout({
   ...otherProps
 }) {
   return (
-    <section
-      className={classNames('max-w-full xl:max-w-5xl mx-auto', className)}
-      {...otherProps}
-    >
+    <FullWidthSection className={classNames(className)} {...otherProps}>
       {children}
-    </section>
+    </FullWidthSection>
   );
 }

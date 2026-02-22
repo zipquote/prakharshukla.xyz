@@ -1,23 +1,64 @@
-import { Layout } from '../';
+import { styled } from '@linaria/react';
+import Layout from '../Layout';
 import EmailIcon from '../../assets/icons/interfaces/at.svg';
+
+const FooterWrapper = styled.footer`
+  padding: 1rem 2.5rem;
+  background-color: #000;
+  color: #fff;
+
+  .dark & {
+    background-color: #fff;
+    color: #000;
+  }
+`;
+
+const FooterInner = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+`;
+
+const Copyright = styled.p`
+  margin-bottom: 0;
+
+  @media (min-width: 768px) {
+    width: 40%;
+  }
+`;
+
+const EmailLink = styled.a`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  @media (min-width: 768px) {
+    width: 20%;
+  }
+`;
 
 export default function Footer() {
   return (
-    <footer className="px-10 py-4 bg-black dark:bg-white text-white dark:text-black">
+    <FooterWrapper>
       <Layout.FullWidth>
-        <div className="flex flex-col md:flex-row md:justify-between">
-          <p className="md:w-2/5 mb-0">
+        <FooterInner>
+          <Copyright>
             © 2019 - {new Date().getFullYear()} Prakhar Shukla
-          </p>
-          <a
-            href="mailto:prakhar.shukla321@gmail.com"
-            className="md:w-1/5 flex justify-end hover:underline"
-          >
+          </Copyright>
+          <EmailLink href="mailto:prakhar.shukla321@gmail.com">
             <EmailIcon fill="#FFFFFF" />
             &nbsp;Email
-          </a>
-        </div>
+          </EmailLink>
+        </FooterInner>
       </Layout.FullWidth>
-    </footer>
+    </FooterWrapper>
   );
 }

@@ -1,8 +1,10 @@
-import '../styles/main.scss';
+// import '../styles/main.scss';
 import '../styles/globals.css';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
-import { Header, Footer, Hero } from '../src/components';
+import Header from '../src/components/Header';
+import Footer from '../src/components/Footer';
+import Hero from '../src/components/Hero';
 import { DarkModeProvider, DarkModeContext } from '../src/context';
 
 function MyApp({ Component, pageProps }) {

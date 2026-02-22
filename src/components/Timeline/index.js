@@ -1,13 +1,38 @@
+import { styled } from '@linaria/react';
 import TimelineEvent from './TimelineEvent';
+
+const TimelineWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 2.5rem 0;
+  padding: 0 1.25rem;
+
+  @media (min-width: 1280px) {
+    padding: 0;
+  }
+`;
+
+const TimelineEventWrapper = styled.div`
+  width: 100%;
+
+  @media (min-width: 768px) {
+    width: 50%;
+  }
+
+  @media (min-width: 1280px) {
+    width: 66.666667%;
+  }
+`;
 
 export default function Timeline({ works }) {
   return (
-    <div className="flex flex-col align-start my-10 px-5 xl:px-0">
+    <TimelineWrapper>
       {works.map(({ frontMatter }) => (
-        <div key={frontMatter.slug} className="w-full md:w-1/2 xl:w-2/3">
+        <TimelineEventWrapper key={frontMatter.slug}>
           <TimelineEvent data={frontMatter} />
-        </div>
+        </TimelineEventWrapper>
       ))}
-    </div>
+    </TimelineWrapper>
   );
 }

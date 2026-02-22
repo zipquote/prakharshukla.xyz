@@ -1,9 +1,15 @@
+import { styled } from '@linaria/react';
 import classNames from 'classnames';
+
+const StyledCardBody = styled.div`
+  flex: 1;
+  margin: 0.5rem 0;
+`;
 
 export default function CardBody({ children, className, ...otherProps }) {
   return (
-    <div className={classNames('flex-1 my-2', className)} {...otherProps}>
+    <StyledCardBody className={classNames(className)} {...otherProps}>
       {children}
-    </div>
+    </StyledCardBody>
   );
 }

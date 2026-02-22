@@ -1,19 +1,48 @@
+import { styled } from '@linaria/react';
+
+const MetaWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin: 0.75rem 0;
+`;
+
+const MetaTitle = styled.h5`
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+
+  .dark & {
+    color: #fff;
+  }
+`;
+
+const MetaTags = styled.p`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+`;
+
+const MetaTag = styled.span`
+  padding: 0.25rem;
+  background-color: #e2e8f0;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
+  font-size: 0.75rem;
+`;
+
 export default function TimelineEventMeta({ title, tags }) {
   return (
-    <div className="flex flex-col my-3">
-      <h5 className="font-jetbrains mb-2 uppercase text-xs dark:text-white">
-        {title}
-      </h5>
-      <p className="flex flex-wrap items-center justify-start">
+    <MetaWrapper>
+      <MetaTitle>{title}</MetaTitle>
+      <MetaTags>
         {tags.map((tag, idx) => (
-          <span
-            key={`${tag.toLowerCase().replace(/[^\w-]+/g, '-')}-${idx}`}
-            className="p-1 bg-gray-200 mb-2 mr-2 text-xs"
-          >
+          <MetaTag key={`${tag.toLowerCase().replace(/[^\w-]+/g, '-')}-${idx}`}>
             {tag}
-          </span>
+          </MetaTag>
         ))}
-      </p>
-    </div>
+      </MetaTags>
+    </MetaWrapper>
   );
 }

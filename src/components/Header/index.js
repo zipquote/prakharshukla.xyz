@@ -1,28 +1,68 @@
+import { styled } from '@linaria/react';
 import { useState } from 'react';
 import classNames from 'classnames';
 import { motion } from 'framer-motion';
-import { Brand, Button, ColorModeToggle, Layout } from '../../components';
+import Brand from '../Brand';
+import Button from '../Button';
+import ColorModeToggle from '../ColorModeToggle';
+import Layout from '../Layout';
 import HeaderMenu from './HeaderMenu';
 import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
+
+const HeaderWrapper = styled.header`
+  position: fixed;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 10;
+
+  .dark & {
+    background-color: transparent;
+  }
+`;
+
+const HeaderInner = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem;
+`;
+
+const HeaderMenuWrapper = styled.div`
+  margin: 0 1rem;
+  display: none;
+
+  @media (min-width: 640px) {
+    display: block;
+    margin-left: auto;
+  }
+`;
+
+const MobileMenuButton = styled(Button)`
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media (min-width: 640px) {
+    display: none;
+  }
+`;
 
 export default function Header() {
   const [isMenuOpen, setMenuOpen] = useState(false);
   return (
-    <header className="fixed w-full bg-white dark:bg-transparent bg-opacity-50 backdrop-blur z-10">
+    <HeaderWrapper>
       <Layout.FullWidth>
-        <div className="flex justify-between p-2">
+        <HeaderInner>
           <Brand />
-          <div className="mx-4 hidden sm:block sm:ml-auto">
+          <HeaderMenuWrapper>
             <HeaderMenu />
-          </div>
+          </HeaderMenuWrapper>
           <ColorModeToggle />
-          <Button
-            className="px-2 py-1 flex items-center justify-center sm:hidden"
-            onClick={() => setMenuOpen((curr) => !curr)}
-          >
+          <MobileMenuButton onClick={() => setMenuOpen((curr) => !curr)}>
             <HamburgerIcon />
-          </Button>
-        </div>
+          </MobileMenuButton>
+        </HeaderInner>
         <motion.div
           className={classNames('overflow-hidden')}
           animate={{ height: isMenuOpen ? 'auto' : 0 }}
@@ -32,6 +72,6 @@ export default function Header() {
           <HeaderMenu />
         </motion.div>
       </Layout.FullWidth>
-    </header>
+    </HeaderWrapper>
   );
 }

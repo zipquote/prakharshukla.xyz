@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 import { serialize } from 'next-mdx-remote/serialize';
-import { MDXComponents } from '../../../src/components';
+import MDXComponents from '../../components/MDXComponents';
 
 const CONTENT_TYPES = {
   POSTS: 'POSTS',

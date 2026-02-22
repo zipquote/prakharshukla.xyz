@@ -1,21 +1,46 @@
 import Image from 'next/image';
-import { NavLink } from '../src/components';
+import { styled } from '@linaria/react';
+import NavLink from '../src/components/NavLink';
+
+const Container = styled.div`
+  margin: 0 auto 2.5rem;
+
+  @media (min-width: 640px) {
+    width: 60%;
+  }
+
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
+`;
+
+const LostMessage = styled.h3`
+  font-family: 'JetBrains', monospace;
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  width: 100%;
+  text-align: center;
+`;
+
+const HomeLink = styled(NavLink)`
+  &:hover {
+    color: #2563eb;
+    text-decoration: underline;
+  }
+`;
 
 export default function Custom404() {
   return (
-    <div className="sm:w-3/5 lg:w-2/4 mx-auto mb-10">
+    <Container>
       <Image
         src={`/images/404.png`}
         alt="Page Not Found"
         width={750}
         height={500}
       />
-      <h3 className="font-jetbrains text-lg w-full text-center">
-        You Lost Buddy? Go{' '}
-        <NavLink className="hover:text-blue-600 hover:underline" href="/">
-          home
-        </NavLink>
-      </h3>
-    </div>
+      <LostMessage>
+        You Lost Buddy? Go <HomeLink href="/">home</HomeLink>
+      </LostMessage>
+    </Container>
   );
 }

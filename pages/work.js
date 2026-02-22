@@ -1,6 +1,18 @@
 import { useState, useRef, useEffect } from 'react';
-import { Canvas, Layout, Timeline } from '../src/components';
+import Canvas from '../src/components/Canvas';
+import Layout from '../src/components/Layout';
+import Timeline from '../src/components/Timeline';
+import { styled } from '@linaria/react';
 import { API } from '../src/utils';
+
+const WorkContainer = styled.div`
+  position: relative;
+`;
+
+const TimelineContainer = styled.div`
+  position: absolute;
+  width: 100%;
+`;
 
 export default function Work({ works }) {
   const [height, setHeight] = useState(0);
@@ -13,14 +25,14 @@ export default function Work({ works }) {
   }, []);
 
   return (
-    <div className="relative" style={{ height }}>
+    <WorkContainer style={{ height }}>
       <Canvas.SPLASH className="absolute" />
-      <div className="absolute w-full" ref={eventRef}>
+      <TimelineContainer ref={eventRef}>
         <Layout.FullWidth>
           <Timeline works={works} />
         </Layout.FullWidth>
-      </div>
-    </div>
+      </TimelineContainer>
+    </WorkContainer>
   );
 }
 
