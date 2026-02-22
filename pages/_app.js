@@ -1,4 +1,5 @@
 import '../styles/main.scss';
+import '../styles/globals.css';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import { Header, Footer, Hero } from '../src/components';

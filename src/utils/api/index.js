@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import renderToString from 'next-mdx-remote/render-to-string';
+import { serialize } from 'next-mdx-remote/serialize';
 import { MDXComponents } from '../../../src/components';
 
 const CONTENT_TYPES = {
@@ -72,13 +72,12 @@ async function getDocumentBySlug(params, type) {
 
   const { content, data } = matter(source);
 
-  const mdxSource = await renderToString(content, {
+  const mdxSource = await serialize(content, {
     components: MDXComponents,
     mdxOptions: {
       remarkPlugins: [],
       rehypePlugins: [],
     },
-    scope: data,
   });
 
   return {
