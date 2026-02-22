@@ -1,20 +1,80 @@
 import Link from 'next/link';
+import { styled } from '@linaria/react';
+
+const BrandLink = styled(Link)`
+  display: flex;
+`;
+
+const FirstName = styled.div`
+  position: relative;
+  font-family: 'Anodina', sans-serif;
+  padding: 0.25rem 1.5rem;
+  border: 2px solid #000;
+  background-color: #000;
+  color: #fff;
+
+  .dark & {
+    background-color: #fff;
+    color: #000;
+  }
+
+  span:first-child {
+    visibility: hidden;
+  }
+
+  span:last-child {
+    position: absolute;
+    padding: 0.25rem 1.5rem;
+    inset: 0.5rem -1rem;
+    font-family: 'Zoika', sans-serif;
+    font-size: 1.5rem;
+
+    @media (min-width: 640px) {
+      inset: 0.75rem -1rem;
+    }
+  }
+`;
+
+const LastName = styled.div`
+  position: relative;
+  font-family: 'Anodina', sans-serif;
+  width: 75%;
+  margin-left: auto;
+  padding: 0.25rem 0.5rem;
+  color: #000;
+  border: 2px solid #000;
+  border-left: 0;
+  background-color: #fff;
+
+  .dark & {
+    color: #fff;
+    background-color: #000;
+  }
+
+  span:first-child {
+    visibility: hidden;
+  }
+
+  span:last-child {
+    position: absolute;
+    padding: 0.25rem 0.5rem;
+    font-family: 'Zoika', sans-serif;
+    inset: 0 -0.125rem;
+    font-size: 1.125rem;
+  }
+`;
 
 export default function Brand() {
   return (
-    <Link href="/" className="brand flex">
-      <div className="relative brand__firstname relative font-anodina px-6 py-1 border-2 border-black bg-black dark:bg-white text-white dark:text-black">
-        <span className="invisible">Prakhar</span>
-        <span className="absolute px-6 py-1 -inset-x-4 inset-y-2 sm:inset-y-3 font-zoika text-2xl">
-          Prakhar
-        </span>
-      </div>
-      <div className="relative brand__lastname font-anodina w-3/4 ml-auto px-2 py-1 text-black dark:text-white border-2 border-l-0 border-black bg-white dark:bg-black">
-        <span className="invisible">Shukla</span>
-        <span className="absolute px-2 py-1 font-zoika -inset-x-0.5 inset-y-0 text-lg">
-          Shukla
-        </span>
-      </div>
-    </Link>
+    <BrandLink href="/">
+      <FirstName>
+        <span>Prakhar</span>
+        <span>Prakhar</span>
+      </FirstName>
+      <LastName>
+        <span>Shukla</span>
+        <span>Shukla</span>
+      </LastName>
+    </BrandLink>
   );
 }
