@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "tina:dev": "tinacms dev -c \"npm run dev\"",
+    "tina:build": "tinacms build && npm run build"
   },
   "dependencies": {
     "@linaria/babel-preset": "^5.0.4",
@@ -15,6 +17,7 @@
     "@mdx-js/loader": "^1.6.22",
     "@next/mdx": "^10.0.5",
     "@svgr/webpack": "^5.5.0",
+    "@tinacms/cli": "^2.1.1",
     "@wyw-in-js/babel-preset": "^0.5.0",
     "classnames": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",
@@ -29,6 +32,7 @@
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "shiki": "^3.22.0",
+    "tinacms": "^3.3.1",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {
