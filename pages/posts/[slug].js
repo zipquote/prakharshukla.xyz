@@ -1,9 +1,9 @@
 import { MDXRemote } from 'next-mdx-remote';
 import { styled } from '@linaria/react';
-import Layout from '../../../components/Layout';
-import MDXComponents from '../../../components/MDXComponents';
-import SEO from '../../../components/SEO';
-import { API } from '../../../utils';
+import Layout from '../../src/components/Layout';
+import MDXComponents from '../../src/components/MDXComponents';
+import SEO from '../../src/components/SEO';
+import { API } from '../../src/utils';
 
 const PostArticle = styled.article`
   padding: 0 0.5rem;
@@ -29,9 +29,60 @@ const PostTitle = styled.h1`
 
 const PostBody = styled.div`
   margin-top: 2.5rem;
+  font-family: 'Poppins', sans-serif;
+  color: #374151;
 
-  &.blog {
-    // Add blog styles here
+  p {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  h1 {
+    font-family: 'Butler-Bold', sans-serif;
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  h2,
+  h3 {
+    font-family: 'Butler-Bold', sans-serif;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  h4,
+  h5 {
+    font-family: 'Butler-Bold', sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  h6 {
+    font-family: 'Butler-Bold', sans-serif;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    margin-top: 1rem;
+    margin-bottom: 1.5rem;
+    color: #fff;
+  }
+
+  code {
+    padding: 0.25rem 0.5rem;
+    background-color: #e5e7eb;
+    color: #000;
+    border-radius: 0.25rem;
   }
 `;
 

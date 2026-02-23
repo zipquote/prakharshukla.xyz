@@ -12,9 +12,17 @@ const StyledCard = styled.div`
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  transition: all 250ms ease-in-out;
 
   &.card--expanded {
-    /* Add styles for expanded card if any */
+    &:hover {
+      box-shadow: 0 6px 30px 0 rgba(115, 110, 111, 0.15);
+    }
+
+    .dark &:hover {
+      box-shadow: 0 6px 30px 0 rgba(49, 49, 49, 0.25);
+      background-color: rgba(49, 49, 49, 1);
+    }
   }
 
   &:hover {

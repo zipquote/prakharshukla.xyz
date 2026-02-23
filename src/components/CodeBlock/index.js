@@ -8,7 +8,8 @@ import { StyledCodeBlock } from './styles';
 (typeof global !== 'undefined' ? global : window).Prism = Prism;
 
 export default function CodeBlock({ children, className }) {
-  const language = className.replace(/language-/, '');
+  // const language = className.replace(/language-/, '');
+  const language = 'js'; //TODO: Fix later
 
   return (
     <DarkModeContext.Consumer>

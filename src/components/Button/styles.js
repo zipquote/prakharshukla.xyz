@@ -1,36 +1,43 @@
 import { styled } from '@linaria/react';
 import NavLink from '../NavLink';
 
-export const StyledButton = styled.button`
+const buttonStyles = `
   padding: 0.25rem;
   margin: 0 0.25rem 0.25rem;
   border: 2px solid #000;
   background-color: #fff;
   border-radius: 0.25rem;
-  box-shadow: 0 2px 0 #000;
+  box-shadow: 0 6px 0 0 rgba(0, 0, 0, var(--tw-border-opacity));
   position: relative;
+
+  &:focus,
+  &:hover {
+    box-shadow: 0 3px 0 0 rgba(0, 0, 0, var(--tw-border-opacity));
+    top: 3px;
+  }
 
   .dark & {
     border-color: #fff;
     background-color: #000;
     color: #fff;
-    box-shadow: 0 2px 0 #fff;
+    box-shadow: 0 6px 0 0 rgba(255, 255, 255, var(--tw-bg-opacity));
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 3px 0 0 rgba(255, 255, 255, var(--tw-bg-opacity));
+      top: 3px;
+    }
+
+    & svg {
+      fill: rgba(255, 255, 255, var(--tw-bg-opacity));
+    }
   }
 `;
 
-export const StyledNavLink = styled(NavLink)`
-  padding: 0.25rem;
-  margin: 0 0.25rem 0.25rem;
-  border: 2px solid #000;
-  background-color: #fff;
-  border-radius: 0.25rem;
-  box-shadow: 0 2px 0 #000;
-  position: relative;
+export const StyledButton = styled.button`
+  ${buttonStyles}
+`;
 
-  .dark & {
-    border-color: #fff;
-    background-color: #000;
-    color: #fff;
-    box-shadow: 0 2px 0 #fff;
-  }
+export const StyledNavLink = styled(NavLink)`
+  ${buttonStyles}
 `;

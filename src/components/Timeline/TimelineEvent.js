@@ -14,6 +14,24 @@ const TimelineEventWrapper = styled.div`
   .dark & {
     border-left: 1px solid #fff;
   }
+
+  &:before {
+    content: '';
+    display: block;
+    background-color: #4a5568;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    left: -0.5rem;
+  }
+
+  .dark &:before {
+    background-color: #fff;
+  }
+
+  &:not(:last-child) .timeline__event-details {
+    margin-bottom: 2.5rem;
+  }
 `;
 
 const TimelineYear = styled.span`

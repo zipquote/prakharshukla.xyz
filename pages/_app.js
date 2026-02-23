@@ -1,9 +1,9 @@
-// import '../styles/main.scss';
 import '../styles/globals.css';
 import classNames from 'classnames';
 import { useRouter } from 'next/router';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
+import { Main } from '../src/components/Layout/styles';
 import Hero from '../src/components/Hero';
 import { DarkModeProvider, DarkModeContext } from '../src/context';
 
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
           >
             <div className="site-wrapper dark:bg-black">
               <Header />
-              <main
+              <Main
                 className={classNames('main dark:bg-black', {
                   'hero__wrapper mt-10': isIndexPage,
                   'mt-20': !isIndexPage,
@@ -33,7 +33,7 @@ function MyApp({ Component, pageProps }) {
               >
                 {isIndexPage && <Hero />}
                 <Component {...pageProps} />
-              </main>
+              </Main>
               <Footer />
             </div>
           </div>

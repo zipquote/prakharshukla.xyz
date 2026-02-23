@@ -1,53 +1,25 @@
-import { styled } from '@linaria/react';
 import classNames from 'classnames';
 import { useContext } from 'react';
 import { DarkModeContext } from '../../context';
-
-const HeroWrapper = styled.div`
-  position: relative;
-`;
-
-const HeroContent = styled.div`
-  position: absolute;
-  width: 100%;
-  padding: 1rem 2.5rem;
-  margin-top: 5rem;
-`;
-
-const HeroContentInner = styled.div`
-  width: 100%;
-
-  @media (min-width: 768px) {
-    width: 50%;
-  }
-
-  &.dark-mode {
-    margin: 0 auto;
-  }
-`;
-
-const HeroTitle = styled.h1`
-  font-family: 'Butler-Extra-Bold', sans-serif;
-  font-size: 3rem;
-  color: #fff;
-  margin-bottom: 0.75rem;
-`;
-
-const HeroSubtitle = styled.p`
-  font-family: 'Poppins', sans-serif;
-  font-size: 1.25rem;
-  color: #fff;
-  margin-bottom: 0.75rem;
-`;
+import {
+  HeroWrapper,
+  HeroImage,
+  HeroContent,
+  HeroContentInner,
+  HeroTitle,
+  HeroSubtitle,
+} from './styles';
 
 export default function Hero() {
   const { isDarkMode } = useContext(DarkModeContext);
   return (
     <HeroWrapper>
-      <img
-        src={`/images/${isDarkMode ? 'pitch-black.png' : 'hero.png'}`}
-        alt="Homepage banner"
-      />
+      <HeroImage>
+        <img
+          src={`/images/${isDarkMode ? 'pitch-black.png' : 'hero.png'}`}
+          alt="Homepage banner"
+        />
+      </HeroImage>
       <HeroContent>
         <HeroContentInner
           className={classNames({

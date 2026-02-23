@@ -1,6 +1,5 @@
 import { styled } from '@linaria/react';
 import { useState } from 'react';
-import classNames from 'classnames';
 import { motion } from 'framer-motion';
 import Brand from '../Brand';
 import Button from '../Button';
@@ -13,7 +12,7 @@ const HeaderWrapper = styled.header`
   position: fixed;
   width: 100%;
   background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(8px);
   z-index: 10;
 
   .dark & {
@@ -64,7 +63,7 @@ export default function Header() {
           </MobileMenuButton>
         </HeaderInner>
         <motion.div
-          className={classNames('overflow-hidden')}
+          style={{ overflow: 'hidden' }}
           animate={{ height: isMenuOpen ? 'auto' : 0 }}
           initial={{ height: 0 }}
           transition={{ height: { duration: 0.5 } }}
