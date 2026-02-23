@@ -2,7 +2,7 @@ import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import NavLink from '../NavLink';
 import catbutton from '../../../public/snippets/html/catbutton.html';
-import { Glitch } from '../Embeds';
+import { Glitch, Sandpack } from '../Embeds';
 import { StyledCatButton } from './styles';
 
 function CatButton() {
@@ -17,6 +17,7 @@ const MDXComponents = {
   pre: CodeBlock,
   CatButton,
   Glitch,
+  Sandpack,
 };
 
 export default MDXComponents;
