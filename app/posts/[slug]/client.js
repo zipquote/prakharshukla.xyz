@@ -37,7 +37,6 @@ const PostBody = styled.div`
     line-height: 1.75rem;
     margin-top: 0.5rem;
     margin-bottom: 1.5rem;
-    color: #fff;
   }
 
   h1 {
@@ -46,7 +45,6 @@ const PostBody = styled.div`
     line-height: 2.25rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    color: #fff;
   }
 
   h2,
@@ -56,7 +54,6 @@ const PostBody = styled.div`
     line-height: 2rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    color: #fff;
   }
 
   h4,
@@ -66,7 +63,6 @@ const PostBody = styled.div`
     line-height: 1.75rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    color: #fff;
   }
 
   h6 {
@@ -75,14 +71,24 @@ const PostBody = styled.div`
     line-height: 1.75rem;
     margin-top: 1rem;
     margin-bottom: 1.5rem;
-    color: #fff;
   }
 
-  code {
+  p > code {
     padding: 0.25rem 0.5rem;
     background-color: #e5e7eb;
     color: #000;
     border-radius: 0.25rem;
+  }
+
+  pre code {
+    padding: 0;
+    background-color: transparent;
+    color: inherit;
+    border-radius: 0;
+  }
+
+  .dark & {
+    color: #e5e7eb;
   }
 `;
 

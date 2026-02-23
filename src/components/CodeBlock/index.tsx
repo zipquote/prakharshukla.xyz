@@ -1,54 +1,56 @@
-// @ts-ignore
-import Prism from 'prism-react-renderer/prism';
-import Highlight, { defaultProps, Language } from 'prism-react-renderer';
-import nightOwlLight from 'prism-react-renderer/themes/nightOwlLight';
-import nightOwl from 'prism-react-renderer/themes/nightOwl';
-import { DarkModeContext } from '../../context';
-import { StyledCodeBlock } from './styles';
+'use client';
 
-(typeof global !== 'undefined' ? global : (window as any)).Prism = Prism;
+import { useContext, useEffect, useState } from 'react';
+import type { BundledLanguage } from 'shiki/bundle/web';
+import { codeToHtml } from 'shiki/bundle/web';
+import { DarkModeContext } from '../../context';
 
 interface ICodeBlockProps {
-  children: React.ReactElement<{ children: string }>;
-  className: string;
+  children: {
+    props: {
+      children: string;
+      className?: string;
+    };
+  };
+  className?: string;
 }
 
-export default function CodeBlock({ children, className }: ICodeBlockProps) {
-  // const language = className.replace(/language-/, '');
-  const language: Language = 'javascript'; //TODO: Fix later
-  const code = children.props.children;
+export default function CodeBlock({ children }: ICodeBlockProps) {
+  const [html, setHtml] = useState('');
+  const { isDarkMode } = useContext(DarkModeContext);
+  const { children: code, className } = children.props;
+  const lang = (className?.replace('language-', '') ||
+    'javascript') as BundledLanguage;
+  const theme = isDarkMode ? 'github-dark' : 'github-light';
 
-  return (
-    <DarkModeContext.Consumer>
-      {({ isDarkMode }) => (
-        <Highlight
-          {...{ ...defaultProps, theme: isDarkMode ? nightOwl : nightOwlLight }}
-          code={code}
-          language={language}
-        >
-          {({ className, style, tokens, getLineProps, getTokenProps }) => (
-            <StyledCodeBlock className={className} style={style}>
-              {tokens.map((line, i) => {
-                const { key, ...lineProps } = getLineProps({ line, key: i });
-                return (
-                  <div key={key} {...lineProps}>
-                    {line.map((token, key) => {
-                      const { key: tokenKey, ...tokenProps } = getTokenProps({
-                        token,
-                        key,
-                      });
-                      return <span key={tokenKey} {...tokenProps} />;
-                    })}
-                  </div>
-                );
-              })}
-            </StyledCodeBlock>
-          )}
-        </Highlight>
-      )}
-    </DarkModeContext.Consumer>
-  );
+  useEffect(() => {
+    let cancelled = false;
+
+    const run = async () => {
+      const out = await codeToHtml(code, {
+        lang,
+        theme,
+      });
+
+      if (!cancelled) {
+        setHtml(out);
+      }
+    };
+
+    void run();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [code, lang, theme]);
+
+  if (!html) {
+    return (
+      <pre>
+        <code>{code}</code>
+      </pre>
+    );
+  }
+
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
 }
-
-//Langauge Support
-require('prismjs/components/prism-twig');

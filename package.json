@@ -19,6 +19,7 @@
     "classnames": "^2.2.6",
     "framer-motion": "^3.2.2-rc.1",
     "gray-matter": "^4.0.2",
+    "hast-util-to-jsx-runtime": "^2.3.6",
     "next": "16.1.6",
     "next-mdx-remote": "^6.0.0",
     "next-seo": "^4.17.0",
@@ -27,6 +28,7 @@
     "prismjs": "^1.23.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "shiki": "^3.22.0",
     "tinytime": "^0.2.6"
   },
   "devDependencies": {

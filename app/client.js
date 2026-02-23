@@ -46,6 +46,7 @@ const PostList = styled.ul`
 const PostListItem = styled.li`
   width: 100%;
   margin-bottom: 1.25rem;
+  list-style-type: none;
 `;
 
 const MoreButton = styled(Button)`

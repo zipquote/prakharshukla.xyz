@@ -67,9 +67,15 @@ export default function Header() {
             <HamburgerIcon />
           </MobileMenuButton>
         </HeaderInner>
-        <div className={isMenuOpen ? 'mobile-menu-open' : 'mobile-menu-closed'}>
+        {/* @ts-ignore */}
+        <motion.div
+          style={{ overflow: 'hidden' }}
+          animate={{ height: isMenuOpen ? 'auto' : 0 }}
+          initial={{ height: 0 }}
+          transition={{ height: { duration: 0.5 } }}
+        >
           <HeaderMenu />
-        </div>
+        </motion.div>
       </Layout.FullWidth>
     </HeaderWrapper>
   );

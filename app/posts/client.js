@@ -36,6 +36,7 @@ const PostList = styled.ul`
   margin-bottom: 2.5rem;
   display: flex;
   flex-wrap: wrap;
+  list-style-type: none;
 
   @media (min-width: 1280px) {
     margin-left: -1rem;

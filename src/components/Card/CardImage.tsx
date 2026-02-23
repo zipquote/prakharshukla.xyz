@@ -9,11 +9,18 @@ interface ICardImageProps extends ComponentProps<typeof Image> {
 }
 
 const StyledCardImage = styled.div`
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  max-width: 100%;
-  height: auto;
-  vertical-align: middle;
   border: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
   &.rounded {
     border-radius: 0.25rem;
