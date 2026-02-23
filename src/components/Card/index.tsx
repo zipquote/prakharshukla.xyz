@@ -1,0 +1,70 @@
+import { styled } from '@linaria/react';
+import classNames from 'classnames';
+import CardHeader from './CardHeader';
+import CardBody from './CardBody';
+import CardFooter from './CardFooter';
+import CardTitle from './CardTitle';
+import CardImage from './CardImage';
+import { ReactNode } from 'react';
+
+interface ICardProps {
+  children: ReactNode;
+  className?: string;
+  type?: 'compact' | 'expanded';
+  [key: string]: any;
+}
+
+const StyledCard = styled.div`
+  border-radius: 0.375rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  transition: all 250ms ease-in-out;
+
+  &.card--expanded {
+    &:hover {
+      box-shadow: 0 6px 30px 0 rgba(115, 110, 111, 0.15);
+    }
+
+    .dark &:hover {
+      box-shadow: 0 6px 30px 0 rgba(49, 49, 49, 0.25);
+      background-color: rgba(49, 49, 49, 1);
+    }
+  }
+
+  &:hover {
+    &.card--compact {
+      background-color: #f3f4f6;
+
+      .dark & {
+        background-color: #4b5563;
+      }
+    }
+  }
+`;
+
+export default function Card({
+  children,
+  className,
+  type,
+  ...otherProps
+}: ICardProps) {
+  return (
+    <StyledCard
+      className={classNames(className, {
+        'card--compact': type === 'compact',
+        'card--expanded': type !== 'compact',
+      })}
+      {...otherProps}
+    >
+      {children}
+    </StyledCard>
+  );
+}
+
+Card.Header = CardHeader;
+Card.Body = CardBody;
+Card.Footer = CardFooter;
+Card.Title = CardTitle;
+Card.Image = CardImage;
