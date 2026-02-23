@@ -11,7 +11,10 @@ import HamburgerIcon from '../../assets/icons/interfaces/hamburger-menu.svg';
 
 const HeaderWrapper = styled.header`
   position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 4rem;
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   z-index: 10;
@@ -23,8 +26,10 @@ const HeaderWrapper = styled.header`
 
 const HeaderInner = styled.div`
   display: flex;
+  align-items: center;
   justify-content: space-between;
   padding: 0.5rem;
+  height: 100%;
 `;
 
 const HeaderMenuWrapper = styled.div`

@@ -16,7 +16,7 @@ const TitleLink = styled.a`
 
 const Title = styled.h3`
   display: flex;
-  font-family: 'Butler-Bold', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.5rem;
   color: #000;
   margin-bottom: 0.5rem;

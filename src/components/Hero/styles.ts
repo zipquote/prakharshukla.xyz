@@ -44,14 +44,14 @@ export const HeroContentInner = styled.div`
 `;
 
 export const HeroTitle = styled.h1`
-  font-family: 'Butler-Extra-Bold', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 3rem;
   color: #fff;
   margin-bottom: 0.75rem;
 `;
 
 export const HeroSubtitle = styled.p`
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.25rem;
   color: #fff;
   margin-bottom: 0.75rem;

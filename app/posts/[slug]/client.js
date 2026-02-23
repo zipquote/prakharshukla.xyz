@@ -12,7 +12,7 @@ const PostArticle = styled.article`
 `;
 
 const PostTitle = styled.h1`
-  font-family: 'Butler-Extra-Bold', sans-serif;
+  font-family: 'Inconsolata', Courier, monospace;
   font-size: 1.25rem;
   line-height: 1.75rem;
   margin-top: 2.5rem;
@@ -29,7 +29,6 @@ const PostTitle = styled.h1`
 
 const PostBody = styled.div`
   margin-top: 2.5rem;
-  font-family: 'Poppins', sans-serif;
   color: #374151;
 
   p {
@@ -40,7 +39,6 @@ const PostBody = styled.div`
   }
 
   h1 {
-    font-family: 'Butler-Bold', sans-serif;
     font-size: 1.875rem;
     line-height: 2.25rem;
     margin-top: 1rem;
@@ -49,7 +47,6 @@ const PostBody = styled.div`
 
   h2,
   h3 {
-    font-family: 'Butler-Bold', sans-serif;
     font-size: 1.5rem;
     line-height: 2rem;
     margin-top: 1rem;
@@ -58,7 +55,6 @@ const PostBody = styled.div`
 
   h4,
   h5 {
-    font-family: 'Butler-Bold', sans-serif;
     font-size: 1.25rem;
     line-height: 1.75rem;
     margin-top: 1rem;
@@ -66,7 +62,6 @@ const PostBody = styled.div`
   }
 
   h6 {
-    font-family: 'Butler-Bold', sans-serif;
     font-size: 1.125rem;
     line-height: 1.75rem;
     margin-top: 1rem;
@@ -78,6 +73,7 @@ const PostBody = styled.div`
     background-color: #e5e7eb;
     color: #000;
     border-radius: 0.25rem;
+    font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   }
 
   pre code {

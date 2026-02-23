@@ -6,7 +6,7 @@ interface IPostDateProps {
 }
 
 const StyledTime = styled.time`
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 0.875rem;
   line-height: 1.25rem;

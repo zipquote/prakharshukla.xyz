@@ -7,7 +7,7 @@ const BrandLink = styled(Link)`
 
 const FirstName = styled.div`
   position: relative;
-  font-family: 'Anodina', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   padding: 0.25rem 1.5rem;
   border: 2px solid #000;
   background-color: #000;
@@ -26,7 +26,7 @@ const FirstName = styled.div`
     position: absolute;
     padding: 0.25rem 1.5rem;
     inset: 0.5rem -1rem;
-    font-family: 'Zoika', sans-serif;
+    font-family: Georgia, 'Times New Roman', serif;
     font-size: 1.5rem;
 
     @media (min-width: 640px) {
@@ -37,7 +37,7 @@ const FirstName = styled.div`
 
 const LastName = styled.div`
   position: relative;
-  font-family: 'Anodina', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   width: 75%;
   margin-left: auto;
   padding: 0.25rem 0.5rem;
@@ -58,7 +58,7 @@ const LastName = styled.div`
   span:last-child {
     position: absolute;
     padding: 0.25rem 0.5rem;
-    font-family: 'Zoika', sans-serif;
+    font-family: Georgia, 'Times New Roman', serif;
     inset: 0 -0.125rem;
     font-size: 1.125rem;
   }

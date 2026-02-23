@@ -9,7 +9,7 @@ interface ITimelineEventTimeframeProps {
 }
 
 const Timeframe = styled.span`
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   font-size: 0.875rem;
   margin-bottom: 0.5rem;
   color: #4a5568;

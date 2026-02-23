@@ -49,7 +49,7 @@ const TimelineEventWrapper = styled.div`
 `;
 
 const TimelineYear = styled.span`
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   margin-bottom: 0.5rem;
   display: none;
 

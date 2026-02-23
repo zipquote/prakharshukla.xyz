@@ -6,7 +6,7 @@ interface IPostExcerptProps {
 
 const StyledExcerpt = styled.p`
   margin-top: 1.25rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 1rem;
   line-height: 1.5rem;

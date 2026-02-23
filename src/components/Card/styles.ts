@@ -36,7 +36,7 @@ export const StyledCardFooter = styled.div`
 `;
 
 export const StyledCardTitle = styled.h3`
-  font-family: 'Butler-Bold', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.5rem;
   line-height: 2rem;
   color: #000;

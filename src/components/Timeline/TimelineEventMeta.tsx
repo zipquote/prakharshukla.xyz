@@ -7,7 +7,7 @@ const MetaWrapper = styled.div`
 `;
 
 const MetaTitle = styled.h5`
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   margin-bottom: 0.5rem;
   text-transform: uppercase;
   font-size: 0.75rem;

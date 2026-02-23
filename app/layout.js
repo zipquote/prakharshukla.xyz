@@ -1,5 +1,6 @@
 'use client';
 import { useContext } from 'react';
+import { usePathname } from 'next/navigation';
 import '../styles/globals.css';
 import classNames from 'classnames';
 import Header from '../src/components/Header';
@@ -9,6 +10,8 @@ import { DarkModeProvider, DarkModeContext } from '../src/context';
 
 function SiteWrapper({ children }) {
   const { isDarkMode } = useContext(DarkModeContext);
+  const pathname = usePathname();
+  const isHome = pathname === '/';
 
   return (
     <div
@@ -21,7 +24,12 @@ function SiteWrapper({ children }) {
     >
       <div className="site-wrapper dark:bg-black">
         <Header />
-        <Main className={'main dark:bg-black mt-20'}>{children}</Main>
+        <Main
+          className={'main dark:bg-black'}
+          style={isHome ? undefined : { paddingTop: '4rem' }}
+        >
+          {children}
+        </Main>
         <Footer />
       </div>
     </div>

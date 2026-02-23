@@ -6,7 +6,7 @@ interface ITimelineEventExcerptProps {
 
 const Excerpt = styled.p`
   margin-top: 0.75rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-weight: 300;
   font-size: 1rem;
   color: #4a5568;

@@ -16,7 +16,7 @@ const Container = styled.div`
 `;
 
 const LostMessage = styled.h3`
-  font-family: 'JetBrains', monospace;
+  font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   font-size: 1.125rem;
   line-height: 1.75rem;
   width: 100%;

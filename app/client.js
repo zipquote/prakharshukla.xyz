@@ -19,7 +19,7 @@ const HeroBlogList = styled.div`
 `;
 
 const LatestPosts = styled.h4`
-  font-family: 'Butler-Bold', sans-serif;
+  font-family: Georgia, 'Times New Roman', serif;
   font-size: 1.875rem;
   line-height: 2.25rem;
   margin: 0 0.75rem;

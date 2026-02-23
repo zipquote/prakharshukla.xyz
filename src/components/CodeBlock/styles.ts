@@ -1,7 +1,7 @@
 import { styled } from '@linaria/react';
 
 export const StyledCodeBlock = styled.pre`
-  font-family: 'JetBrains', monospace;
+  font-family: 'Fira Code', Menlo, Monaco, Consolas, 'Courier New', monospace;
   border: 2px solid #e5e7eb;
   border-radius: 0.375rem;
   padding: 1rem;
