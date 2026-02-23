@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
-import { serialize } from 'next-mdx-remote/serialize';
-import MDXComponents from '../../components/MDXComponents';
+// import { serialize } from 'next-mdx-remote/serialize';
+// import MDXComponents from '../../components/MDXComponents';
 
 const CONTENT_TYPES = {
   POSTS: 'POSTS',
@@ -29,6 +29,14 @@ function getContent(type) {
   return allFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(getPaths(type), filePath));
     const { content, data } = matter(source);
+
+    // const mdxSource = await serialize(content, {
+    //   components: MDXComponents,
+    //   mdxOptions: {
+    //     remarkPlugins: [],
+    //     rehypePlugins: [],
+    //   },
+    // });
 
     return {
       content,
@@ -67,21 +75,14 @@ getDocumentPaths.posts = () => getDocumentPaths(CONTENT_TYPES.POSTS);
 getDocumentPaths.works = () => getDocumentPaths(CONTENT_TYPES.WORKS);
 
 async function getDocumentBySlug(params, type) {
-  const postFilePath = path.join(getPaths(type), `${params.slug}.mdx`);
+  const awaitedParams = await params;
+  const postFilePath = path.join(getPaths(type), `${awaitedParams.slug}.mdx`);
   const source = fs.readFileSync(postFilePath);
 
   const { content, data } = matter(source);
 
-  const mdxSource = await serialize(content, {
-    components: MDXComponents,
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [],
-    },
-  });
-
   return {
-    mdxSource,
+    content,
     frontMatter: data,
   };
 }

@@ -1,3 +1,4 @@
+'use client';
 import { styled } from '@linaria/react';
 import { useState } from 'react';
 import { motion } from 'framer-motion';

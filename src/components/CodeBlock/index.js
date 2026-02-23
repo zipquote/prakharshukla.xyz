@@ -10,24 +10,32 @@ import { StyledCodeBlock } from './styles';
 export default function CodeBlock({ children, className }) {
   // const language = className.replace(/language-/, '');
   const language = 'js'; //TODO: Fix later
+  const code = children.props.children;
 
   return (
     <DarkModeContext.Consumer>
       {({ isDarkMode }) => (
         <Highlight
           {...{ ...defaultProps, theme: isDarkMode ? nightOwl : nightOwlLight }}
-          code={children}
+          code={code}
           language={language}
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <StyledCodeBlock className={className} style={style}>
-              {tokens.map((line, i) => (
-                <div key={i} {...getLineProps({ line, key: i })}>
-                  {line.map((token, key) => (
-                    <span key={key} {...getTokenProps({ token, key })} />
-                  ))}
-                </div>
-              ))}
+              {tokens.map((line, i) => {
+                const { key, ...lineProps } = getLineProps({ line, key: i });
+                return (
+                  <div key={key} {...lineProps}>
+                    {line.map((token, key) => {
+                      const { key: tokenKey, ...tokenProps } = getTokenProps({
+                        token,
+                        key,
+                      });
+                      return <span key={tokenKey} {...tokenProps} />;
+                    })}
+                  </div>
+                );
+              })}
             </StyledCodeBlock>
           )}
         </Highlight>

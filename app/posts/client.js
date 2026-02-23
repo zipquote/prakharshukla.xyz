@@ -1,9 +1,9 @@
-import Head from 'next/head';
+'use client';
+
 import { styled } from '@linaria/react';
 import Layout from '../../src/components/Layout';
 import NavLink from '../../src/components/NavLink';
 import BlogPostList from '../../src/components/BlogPostList';
-import { API } from '../../src/utils';
 
 const PostsPage = styled.div`
   padding: 0.5rem;
@@ -56,12 +56,9 @@ const PostListItem = styled.li`
   }
 `;
 
-export default function Index({ posts }) {
+export default function Posts({ posts }) {
   return (
     <div>
-      <Head>
-        <title>All Posts</title>
-      </Head>
       <Layout.FullWidth>
         <PostsPage>
           <Title>Blog Posts</Title>
@@ -83,10 +80,4 @@ export default function Index({ posts }) {
       </Layout.FullWidth>
     </div>
   );
-}
-
-export function getStaticProps() {
-  const posts = API.getContent.posts();
-
-  return { props: { posts } };
 }

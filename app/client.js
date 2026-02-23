@@ -1,9 +1,10 @@
+'use client';
 import { styled } from '@linaria/react';
-import { API } from '../src/utils';
 import NavLink from '../src/components/NavLink';
 import Layout from '../src/components/Layout';
 import BlogPostList from '../src/components/BlogPostList';
 import Button from '../src/components/Button';
+import Hero from '../src/components/Hero';
 
 const HeroBlogList = styled.div`
   position: relative;
@@ -69,37 +70,34 @@ const MoreButtonContainer = styled.div`
   justify-content: center;
 `;
 
-export default function Index({ posts }) {
+export default function IndexClient({ posts }) {
   return (
-    <Layout.FullWidth>
-      <BlogListContainer>
-        <HeroBlogList>
-          <LatestPosts>Latest Posts</LatestPosts>
-          <PostList>
-            {posts.map(({ frontMatter }) => {
-              return (
-                <PostListItem key={frontMatter.slug}>
-                  <NavLink
-                    as={`/posts/${frontMatter.slug}`}
-                    href="/posts/[slug]"
-                  >
-                    <BlogPostList frontMatter={frontMatter} type="compact" />
-                  </NavLink>
-                </PostListItem>
-              );
-            })}
-          </PostList>
-          <MoreButtonContainer>
-            <MoreButton href="/posts">More</MoreButton>
-          </MoreButtonContainer>
-        </HeroBlogList>
-      </BlogListContainer>
-    </Layout.FullWidth>
+    <>
+      <Hero />
+      <Layout.FullWidth>
+        <BlogListContainer>
+          <HeroBlogList>
+            <LatestPosts>Latest Posts</LatestPosts>
+            <PostList>
+              {posts.map(({ frontMatter }) => {
+                return (
+                  <PostListItem key={frontMatter.slug}>
+                    <NavLink
+                      as={`/posts/${frontMatter.slug}`}
+                      href="/posts/[slug]"
+                    >
+                      <BlogPostList frontMatter={frontMatter} type="compact" />
+                    </NavLink>
+                  </PostListItem>
+                );
+              })}
+            </PostList>
+            <MoreButtonContainer>
+              <MoreButton href="/posts">More</MoreButton>
+            </MoreButtonContainer>
+          </HeroBlogList>
+        </BlogListContainer>
+      </Layout.FullWidth>
+    </>
   );
-}
-
-export function getStaticProps() {
-  const posts = API.getContent.posts();
-
-  return { props: { posts } };
 }

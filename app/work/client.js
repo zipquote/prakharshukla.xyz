@@ -1,9 +1,9 @@
+'use client';
 import { useState, useRef, useEffect } from 'react';
-import Canvas from '../src/components/Canvas';
-import Layout from '../src/components/Layout';
-import Timeline from '../src/components/Timeline';
+import Canvas from '../../src/components/Canvas';
+import Layout from '../../src/components/Layout';
+import Timeline from '../../src/components/Timeline';
 import { styled } from '@linaria/react';
-import { API } from '../src/utils';
 
 const WorkContainer = styled.div`
   position: relative;
@@ -14,14 +14,16 @@ const TimelineContainer = styled.div`
   width: 100%;
 `;
 
-export default function Work({ works }) {
+export default function WorkClient({ works }) {
   const [height, setHeight] = useState(0);
   const eventRef = useRef(null);
 
   useEffect(() => {
     const element = eventRef.current;
-    const dimensions = element.getBoundingClientRect();
-    setHeight(dimensions.height + 10);
+    if (element) {
+      const dimensions = element.getBoundingClientRect();
+      setHeight(dimensions.height + 10);
+    }
   }, []);
 
   return (
@@ -34,10 +36,4 @@ export default function Work({ works }) {
       </TimelineContainer>
     </WorkContainer>
   );
-}
-
-export function getStaticProps() {
-  const works = API.getContent.works();
-
-  return { props: { works } };
 }

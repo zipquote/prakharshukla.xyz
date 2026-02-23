@@ -1,3 +1,4 @@
+'use client';
 import Image from 'next/image';
 import { styled } from '@linaria/react';
 import NavLink from '../src/components/NavLink';
@@ -29,7 +30,7 @@ const HomeLink = styled(NavLink)`
   }
 `;
 
-export default function Custom404() {
+export default function NotFound() {
   return (
     <Container>
       <Image

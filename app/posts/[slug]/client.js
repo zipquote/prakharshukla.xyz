@@ -1,9 +1,9 @@
+'use client';
+
 import { MDXRemote } from 'next-mdx-remote';
 import { styled } from '@linaria/react';
-import Layout from '../../src/components/Layout';
-import MDXComponents from '../../src/components/MDXComponents';
-import SEO from '../../src/components/SEO';
-import { API } from '../../src/utils';
+import Layout from '../../../src/components/Layout';
+import MDXComponents from '../../../src/components/MDXComponents';
 
 const PostArticle = styled.article`
   padding: 0 0.5rem;
@@ -86,46 +86,15 @@ const PostBody = styled.div`
   }
 `;
 
-export default function PostPage({ source, frontMatter, slug }) {
-  const website = process.env.NEXT_PUBLIC_WEBSITE_URL;
-
+export default function PostPage({ source, frontMatter }) {
   return (
-    <>
-      <SEO
-        title={frontMatter.title}
-        description={frontMatter.excerpt || frontMatter.title}
-        url={`${website}/posts/${slug}`}
-        frontMatter={frontMatter}
-      />
-      <Layout>
-        <PostArticle>
-          <PostTitle>{frontMatter.title}</PostTitle>
-          <PostBody className="blog">
-            <MDXRemote {...source} components={MDXComponents} />
-          </PostBody>
-        </PostArticle>
-      </Layout>
-    </>
+    <Layout>
+      <PostArticle>
+        <PostTitle>{frontMatter.title}</PostTitle>
+        <PostBody className="blog">
+          <MDXRemote {...source} components={MDXComponents} />
+        </PostBody>
+      </PostArticle>
+    </Layout>
   );
 }
-
-export const getStaticProps = async ({ params }) => {
-  const { frontMatter, mdxSource } = await API.getDocumentBySlug.posts(params);
-
-  return {
-    props: {
-      source: mdxSource,
-      frontMatter,
-      slug: params.slug,
-    },
-  };
-};
-
-export const getStaticPaths = async () => {
-  const paths = API.getDocumentPaths.posts();
-
-  return {
-    paths,
-    fallback: false,
-  };
-};

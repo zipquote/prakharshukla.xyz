@@ -14,7 +14,7 @@ const CodeBlock = dynamic(() => import('../CodeBlock'));
 const MDXComponents = {
   NavLink,
   Head,
-  code: CodeBlock,
+  pre: CodeBlock,
   CatButton,
   Glitch,
 };

@@ -20,10 +20,7 @@ module.exports = withLinaria({
     return config;
   },
   transpilePackages: ['next-mdx-remote'],
-  i18n: {
-    locales: ['en', 'hi'],
-    defaultLocale: 'en',
-  },
+
   images: {
     remotePatterns: [
       {
